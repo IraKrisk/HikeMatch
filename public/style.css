@@ -1,0 +1,160 @@
+html, body, header, section, article, div, footer, p, h1, ul, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+  overflow: auto;
+}
+body, input, textarea, .button {
+  box-sizing: border-box;
+}
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	background-size: contain;
+}
+header, h1, h2, .button {
+  font-family: 'Rock Salt', cursive;
+}
+.clearfix {
+  clear: both;
+}
+.right {
+  float: right;
+}
+.hidden {
+	display: none;
+}
+body {
+  max-width: 960px;
+  width: 100%;
+  font-family: 'PT Sans Caption', sans-serif;
+  margin: 0 auto;
+}
+header {
+  margin-top: 10px;
+  min-height: 80px;
+  border-bottom: 1px solid #1f497d;
+}
+header a {
+  color: #13911f;
+}
+#logo {
+  float: left;
+}
+#navigation {
+  margin: 35px auto;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.logMenu {
+  font-size: 12px;
+  text-transform: none;
+  margin-top: 2px;
+}
+#navigation ul li:nth-child(2) {
+  padding-right: 20px;
+}
+
+#navigation ul li {
+  float: left;
+  padding-left: 25px;
+}
+.blue {
+  color: #1f497d;
+}
+.button, .button a {
+  border-right: none;
+  border-left: none;
+  color: #13911f;
+  font-size: 14px;
+  background: #fff;
+}
+.button {
+  border-top: 1px solid #1f497d;
+  border-bottom: 1px solid #1f497d;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.button:hover {
+  border-top: 2px solid #1f497d;
+  border-bottom: 2px solid #1f497d;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+}
+
+/* index page */
+img {
+  background-size: contain;
+  width: 100%;
+  height: auto;
+}
+#addhike, #county {
+  display: inline-block;
+  margin-top: 20px;
+}
+#home-buttons {
+  margin: 0 2%;
+}
+
+
+/* form */
+.formContainer {
+  width: 70%;
+  margin: 0 auto;
+}
+fieldset {
+  border: none;
+}
+.input-field:first-child{
+  float:left;
+}
+input, textarea {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #13911f;
+  border-radius: 3px;
+  padding: 18px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:active {
+  font-family: 'PT Sans Caption', sans-serif;
+}
+.req {
+  float: right;
+  color: #13911f;
+  margin-right: 50px;
+}
+
+
+/* Log in */
+#logReg {
+  margin: 30px 20px 90px;
+}
+#logReg p {
+  float: left;
+}
+#logReg a {
+  float: right;
+}
+
+
+/* footer */
+footer {
+  height: 70px;
+  font-family: 'Rock Salt', cursive;
+  background: #13911f;
+  color: #fff;
+  font-size: 11px;
+  line-height: 20px;
+  margin-top: 30px;
+  padding-top: 10px;
+  text-align: center;
+}
