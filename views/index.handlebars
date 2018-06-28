@@ -11,5 +11,20 @@
       </ul>
     </li>
   </ul>
-  <a href="addhike" id="addhike" class="button right">Add Hike</a>
+  <a href="/hikes/add" id="add" class="button right">Add Hike</a>
+</div>
+
+    {{> _message}}
+    
+<div>
+  {{#each hikes}}
+    <div>
+      <h3>{{destination}}</h3>
+      <p>{{county}}</p>
+      <a href="/hikes/edit/{{id}}" class="button">Edit</a>
+      <a href="/hikes/delete/{{id}}" class="button">Delete</a>
+    </div>
+  {{else}}
+    <p>No hikes posted yet</p>
+  {{/each}}
 </div>

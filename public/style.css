@@ -8,6 +8,9 @@ body {
 body, input, textarea, .button {
   box-sizing: border-box;
 }
+h2 {
+  font-size: 18px;
+}
 ul {
 	list-style: none;
 }
@@ -68,11 +71,11 @@ header a {
   color: #1f497d;
 }
 .button, .button a {
-  border-right: none;
-  border-left: none;
   color: #13911f;
   font-size: 14px;
   background: #fff;
+  border-right: none;
+  border-left: none;
 }
 .button {
   border-top: 1px solid #1f497d;
@@ -80,12 +83,21 @@ header a {
   padding-top: 3px;
   padding-bottom: 3px;
 }
-.button:hover {
+.button:hover, .message {
   border-top: 2px solid #1f497d;
   border-bottom: 2px solid #1f497d;
+  border-right: none;
+  border-left: none;
   padding-top: 2px;
   padding-bottom: 2px;
   font-weight: bold;
+}
+.message {
+  font-family: 'Rock Salt', cursive;
+  color: #13911f;
+  font-size: 14px;
+  padding: 7px 15px;
+  margin: 30px auto;
 }
 
 /* index page */
@@ -94,13 +106,16 @@ img {
   width: 100%;
   height: auto;
 }
-#addhike, #county {
+#add, #county {
   display: inline-block;
   margin-top: 20px;
 }
 #home-buttons {
-  margin: 0 2%;
+  margin: 0 15px;
 }
+
+
+
 
 
 /* form */
