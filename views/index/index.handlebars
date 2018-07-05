@@ -1,0 +1,34 @@
+<div id="gallery">  
+  <img src="/images/gallery/mountain1.jpg"/>
+</div>
+<div id="home-buttons">
+  <ul id="county">
+    <li class="button dropdown"><a href="#">County</a>
+      <ul id="dropdown-county" class="button hidden">
+        <li><a href="/category/County1">County1</a></li>
+        <li><a href="/category/County2">County2</a></li>
+        <li><a href="/category/County3">County3</a></li>
+      </ul>
+    </li>
+  </ul>
+  <a href="/hikes/add" id="add" class="button right">Add Hike</a>
+</div>
+
+    {{> _message}}
+    
+<div>
+  {{#each hikes}}
+    <div>
+      <h3>{{destination}}</h3>
+      <p>{{county}}</p>
+      <p>{{formatDate date 'DD MMMM YYYY'}}</p>
+      <p>by {{user.name}}</p>
+      <a href="/hikes/show/{{id}}" class="button">Details</a>
+    </div>
+  {{else}}
+    <p class="message">No hikes posted yet</p>
+  {{/each}}
+
+
+  
+</div>

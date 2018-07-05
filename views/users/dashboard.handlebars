@@ -1,0 +1,11 @@
+{{#if hikes}}
+  {{#each hikes}}
+    <div>
+      <a href="/hikes/show/{{id}}" class="button">>  {{destination}}</a>
+      <a href="/hikes/edit/{{id}}" class="button">Edit</a>
+      <a href="/hikes/delete/{{id}}" class="button">Delete</a>
+    </div>
+  {{/each}}
+{{else}}
+  <p>No hikes posted</p>
+{{/if}}

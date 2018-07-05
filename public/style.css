@@ -5,8 +5,11 @@ html, body, header, section, article, div, footer, p, h1, ul, li {
 body {
   overflow: auto;
 }
-body, input, textarea, .button {
+body, input, textarea, .button, .leftContainer, rightContainer {
   box-sizing: border-box;
+}
+h2 {
+  font-size: 18px;
 }
 ul {
 	list-style: none;
@@ -20,14 +23,14 @@ img {
 header, h1, h2, .button {
   font-family: 'Rock Salt', cursive;
 }
-.clearfix {
-  clear: both;
-}
 .right {
   float: right;
 }
 .hidden {
 	display: none;
+}
+.clearfix {
+  clear: both;
 }
 body {
   max-width: 960px;
@@ -52,9 +55,8 @@ header a {
   text-transform: uppercase;
 }
 .logMenu {
-  font-size: 12px;
-  text-transform: none;
-  margin-top: 2px;
+  font-size: 9px;
+  margin-top: 7px; 
 }
 #navigation ul li:nth-child(2) {
   padding-right: 20px;
@@ -68,11 +70,11 @@ header a {
   color: #1f497d;
 }
 .button, .button a {
-  border-right: none;
-  border-left: none;
   color: #13911f;
   font-size: 14px;
   background: #fff;
+  border-right: none;
+  border-left: none;
 }
 .button {
   border-top: 1px solid #1f497d;
@@ -80,12 +82,28 @@ header a {
   padding-top: 3px;
   padding-bottom: 3px;
 }
-.button:hover {
+.button:hover, .button:focus {
   border-top: 2px solid #1f497d;
   border-bottom: 2px solid #1f497d;
+  border-right: none;
+  border-left: none;
   padding-top: 2px;
   padding-bottom: 2px;
   font-weight: bold;
+  outline: none;
+}
+.message {
+  font-family: 'Rock Salt', cursive;
+  color: #fff;
+  background: #13911f;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 7px 15px;
+  margin: 30px auto;
+  border: none;
+}
+.error {
+  background:  #1f497d;
 }
 
 /* index page */
@@ -94,13 +112,16 @@ img {
   width: 100%;
   height: auto;
 }
-#addhike, #county {
+#add, #county {
   display: inline-block;
   margin-top: 20px;
 }
 #home-buttons {
-  margin: 0 2%;
+  margin: 0 15px;
 }
+
+
+
 
 
 /* form */
@@ -144,6 +165,24 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
 #logReg a {
   float: right;
 }
+
+
+
+/* show page */
+.leftContainer{
+  width: 70%;
+  display: inline-block;
+}
+.rightContainer{
+  width: 20%;
+  display: block;
+}
+.rightContainer ul li {
+  margin-bottom: 25px;
+  display: block;
+}
+
+
 
 
 /* footer */

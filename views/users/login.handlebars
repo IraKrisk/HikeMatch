@@ -1,11 +1,15 @@
 <h2>Log in</h2>
+
+{{> _errors}}
+{{> _message}}
+
 <div class="formContainer log">
-  <form method="post">
+  <form method="post" novalidate>
     <fieldset>
       <label for="email">Email</label><span class="req">* Required field</span>
-      <input name="email" type="text"/>
-      <label for="pass">Password</label><span class="req">* Required field</span>
-      <input name="pass" type="text"/>    
+      <input name="email" type="email" value="{{email}}">
+      <label for="password">Password</label><span class="req">* Required field</span>
+      <input name="password" type="password" value="{{password}}">    
       <button type="submit" class="button">Log in</button>
     </fieldset>
   </form>

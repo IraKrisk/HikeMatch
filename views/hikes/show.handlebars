@@ -1,0 +1,24 @@
+<h2>Hike Details</h2>
+<div class="leftContainer left">
+	<h3>Destination: {{hike.destination}}</h3>
+	<p>{{hike.county}}</p>
+	<p>by {{hike.user.name}}</p>
+	<p>{{formatDate hike.date 'DD MMMM YYYY'}}</p>
+	<p>Meeting point: {{hike.meeting_point}}</p>
+	<p>Date: {{formatDate hike.hike_date 'DD MMMM YYYY'}}</p>
+	<p>Time: {{hike.hike_time}}</p>
+	<p>Estimated hike time: {{hike.estimated_time}}</p>
+	<p>Difficulty level: {{hike.diff_level}}</p>
+	<p>Elevation: {{hike.elevation}}</p>
+	<p>Average slope: {{hike.slope}}</p>
+	<p>Description: {{hike.description}}</p>  
+</div>
+<div class="rightContainer right">
+	<ul class="hikeDetails">
+		<li><a href="/hikes/delete/{{id}}" class="button">phone</a></li>
+		<li><a href="/hikes/delete/{{id}}" class="button">email</a></li>
+		<li><a href="/hikes/user/{{user.id}}" class="button">{{hike.user.name}}'s hikes</a></li>
+		<li><a href="/" class="button">hike list</a></li>
+	</ul>
+</div>
+<div class="clearfix"></div>

@@ -1,28 +1,29 @@
-<h2>Edit Hike</h2>
-<div class="form add">
+<h2>Add Hike Suggestion</h2>
+{{>_errors}}
+<div class="formContainer add">
   <form method="post">
     <fieldset>
       <label for="destination">Destination</label><span class="req">* Required field</span>
-      <input name="destination" type="text"/>
+      <input name="destination" type="text" value="{{destination}}">
       <label for="county">County</label><span class="req">* Required field</span>
-      <input name="county" type="text"/>
+      <input name="county" type="text" value="{{county}}">
       <label for="meeting_point">Meeting point</label><span class="req">* Required field</span>
-      <input name="meeting_point" type="text"/>
+      <input name="meeting_point" type="text" value="{{meeting_point}}">
       <label for="hike_date">Date</label><span class="req">* Required field</span>
-      <input name="hike_date" type="text"/>
+      <input name="hike_date" type="date" value="{{hike_date}}">
       <label for="hike_time">Time</label><span class="req">* Required field</span>
-      <input name="hike_time" type="text"/>
+      <input name="hike_time" type="time" value="{{hike_time}}">
       <label for="estimated_time">Estimated hike time</label><span class="req">* Required field</span>
-      <input name="estimated_time" type="text"/>
+      <input name="estimated_time" type="text" value="{{estimated_time}}">
       <label for="diff_level">Difficulty level</label><span class="req">* Required field</span>
-      <input name="diff_level" type="text"/>
+      <input name="diff_level" type="text" value="{{diff_level}}">
       <label for="elevation">Elevation</label><span class="req">* Required field</span>
-      <input name="elevation" type="text"/>
+      <input name="elevation" type="text" value="{{elevation}}">
       <label for="slope">Average slope</label><span class="req">* Required field</span>
-      <input name="slope" type="text"/>
+      <input name="slope" type="text" value="{{slope}}">
       <label for="description">Description</label>
-      <textarea name="description"></textarea>     
-      <button type="submit" class="button">Edit Hike</button>
+      <textarea name="description">{{description}}</textarea>     
+      <button type="submit" class="button">Add New Hike</button>
     </fieldset>
   </form>
 </div>

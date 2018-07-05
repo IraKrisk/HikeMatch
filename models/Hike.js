@@ -1,50 +1,46 @@
 const mongoose = require('mongoose');
 
-const hikeSchema = mongoose.Schema({
+const HikeSchema = mongoose.Schema({
   destination:{
-    type: String,
-    required: true
+    type: String
   },
   county:{
-    type: String,
-    required: true
+    type: String
   },
-  meetingPoint:{
-    type: String,
-    required: true
+  meeting_point:{
+    type: String
   }, 
-  hikeDate:{
-    type: String,
-    required: true
+  hike_date:{
+    type: String
   }, 
-  hikeTime:{
-    type: String,
-    required: true
+  hike_time:{
+    type: String
   }, 
-  estimatedHikeTime:{
-    type: String,
-    required: true
+  estimated_time:{
+    type: String
   }, 
-  difficultyLevel:{
-    type: String,
-    required: true
+  diff_level:{
+    type: String
   }, 
   elevation:{
-    type: String,
-    required: true
+    type: String
   }, 
-  averageSlope:{
-    type: String,
-    required: true
+  slope:{
+    type: String
   }, 
   description:{
-    type: String,
-    required: true
+    type: String
   },
-  date: {
+  date:{
     type: Date,
     default: Date.now
+  },
+  user:{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'users'
   }
 });
 
-mongoose.model('hikes', hikeSchema);
+
+
+mongoose.model('hikes', HikeSchema);

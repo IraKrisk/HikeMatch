@@ -7,23 +7,30 @@
     <title>Hike Match</title>
     <meta name="author" content="Ira Kriskovic">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption|Rock+Salt" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="../../style.css" type="text/css">
     <script src="script.js"></script>
   </head>
   <body>
 
     <header>
-      <h1 id="logo"><a href="/"><span class="blue">H</span>ike <span class="blue">M</span>atch</a></h1>
+      <h1 id="logo"><a href="/"><span class="blue">H</span>ike<span class="blue"> M</span>atch</a></h1>
       <nav id="navigation" class="right">
         <ul>
-          <li><a href="/">Hikes</a></li>
-          <li><a href="/info">Info</a></li>
-          <li class="logMenu"><a href="/login">Log in</a></li>
-          <li class="logMenu"><a href="/register">Register</a></li>
+          {{#if user}}
+            <li><a href="/">Hikes</a></li>
+            <li><a href="/info">Info</a></li>
+            <li class="logMenu"><a href="/users/dashboard"><span class="blue">{{user.name}}</span>&nbsp;&nbsp;        Dashboard</a></li>
+            <li class="logMenu"><a href="/users/logout">Log out</a></li>
+          {{else}}
+            <li><a href="/">Hikes</a></li>
+            <li><a href="/info">Info</a></li>
+            <li class="logMenu"><a href="/users/login">Log in</a></li>
+            <li class="logMenu"><a href="/users/register">Register</a></li>
+          {{/if}}
         </ul>
       </nav>
 
-      <nav id="mob-navigation" class="right">
+      <nav id="mob-navigation" class="right hidden">
         <ul>
           <li class="dropdown"><a href="#">Menu</a>
           <ul class="dropdown-menu">
@@ -36,11 +43,10 @@
       </nav>      
 
     </header>
-    <div class="clearfix"></div>
     </div>
 
     <main>
-     {{{body}}}
+      {{{body}}}
     </main>
 
     <footer>
