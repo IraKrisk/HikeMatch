@@ -1,9 +1,13 @@
+<h2>Hello {{user.name}}!</h2>
+{{> _message}}
+<a href="/hikes/add" id="add" class="button right">Add Hike</a>
 {{#if hikes}}
   {{#each hikes}}
     <div>
-      <a href="/hikes/show/{{id}}" class="button">>  {{destination}}</a>
-      <a href="/hikes/edit/{{id}}" class="button">Edit</a>
-      <a href="/hikes/delete/{{id}}" class="button">Delete</a>
+      <a href="/hikes/show/{{code}}" class="button">{{code}}</a>
+      <span class="button">{{code}}</span>
+      <a href="/hikes/edit/{{code}}" class="button">Edit</a>
+      <a href="/hikes/delete/{{code}}" class="button">Delete</a>
     </div>
   {{/each}}
 {{else}}

@@ -1,28 +1,45 @@
 <h2>Add Hike Suggestion</h2>
 {{>_errors}}
+<p>* All fields are required</p>
 <div class="formContainer add">
   <form method="post">
     <fieldset>
-      <label for="destination">Destination</label><span class="req">* Required field</span>
+      <label for="destination">Destination</label>
       <input name="destination" type="text" value="{{destination}}">
-      <label for="county">County</label><span class="req">* Required field</span>
-      <input name="county" type="text" value="{{county}}">
-      <label for="meeting_point">Meeting point</label><span class="req">* Required field</span>
+      <select name="county" class="select" value="{{county}}">
+        <option selected hidden>County</option>
+        <option value="antrim">Antrim</option>
+        <option value="armagh">Armagh</option>
+        <option value="carlow">Carlow</option>
+        <option value="cavan">Cavan</option>
+        <option value="clare">Clare</option>
+      </select>
+      <label for="code">Hike code</label><span class="req">Max 5 characters, letters and numbers, no spaces</span>
+      <input name="code" type="text" value="{{code}}">
+      <label for="meeting_point">Meeting point</label>
       <input name="meeting_point" type="text" value="{{meeting_point}}">
-      <label for="hike_date">Date</label><span class="req">* Required field</span>
+      <label for="hike_date">Date</label>
       <input name="hike_date" type="date" value="{{hike_date}}">
-      <label for="hike_time">Time</label><span class="req">* Required field</span>
+      <label for="hike_time">Time</label>
       <input name="hike_time" type="time" value="{{hike_time}}">
-      <label for="estimated_time">Estimated hike time</label><span class="req">* Required field</span>
+      <label for="estimated_time">Estimated hike time (in hours)</label>
       <input name="estimated_time" type="text" value="{{estimated_time}}">
-      <label for="diff_level">Difficulty level</label><span class="req">* Required field</span>
-      <input name="diff_level" type="text" value="{{diff_level}}">
-      <label for="elevation">Elevation</label><span class="req">* Required field</span>
+      <select name="diff_level" class="select" value="{{diff_level}}">
+        <option selected hidden>Difficulty level</option>
+        <option value="&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+      </select>
+      <label for="elevation">Elevation</label>
       <input name="elevation" type="text" value="{{elevation}}">
-      <label for="slope">Average slope</label><span class="req">* Required field</span>
+      <label for="slope">Average slope</label>
       <input name="slope" type="text" value="{{slope}}">
       <label for="description">Description</label>
       <textarea name="description">{{description}}</textarea>     
+
+
       <button type="submit" class="button">Add New Hike</button>
     </fieldset>
   </form>

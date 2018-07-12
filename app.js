@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');  
 const session = require('express-session');  
 const passport = require('passport'); 
+const nodemailer = require('nodemailer'); 
+const moment = require('moment');
 const app = express();   // create the express application
 
 app.use(express.static('public')); // access to the public folder
@@ -49,12 +51,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // connect flash
 app.use(flash());
 
 // variables
-app.use( function(req, res, next){
+app.use(function(req, res, next){
   res.locals.success_msg = req.flash('success_msg');  // messages
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -68,6 +69,6 @@ app.use('/hikes', hikes);
 app.use('/users', users);
 
 // server
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+app.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
   console.log('server started');
 });

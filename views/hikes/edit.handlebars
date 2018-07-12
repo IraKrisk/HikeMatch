@@ -4,8 +4,14 @@
     <fieldset>
       <label for="destination">Destination</label><span class="req">* Required field</span>
       <input name="destination" type="text" value="{{hike.destination}}">
-      <label for="county">County</label><span class="req">* Required field</span>
-      <input name="county" type="text" value="{{hike.county}}">
+      <select name="county" class="select" value="{{hike.county}}">
+        <option selected hidden>County</option>
+        <option value="antrim">Antrim</option>
+        <option value="armagh">Armagh</option>
+        <option value="carlow">Carlow</option>
+        <option value="cavan">Cavan</option>
+        <option value="clare">Clare</option>
+      </select>
       <label for="meeting_point">Meeting point</label><span class="req">* Required field</span>
       <input name="meeting_point" type="text" value="{{hike.meeting_point}}">
       <label for="hike_date">Date</label><span class="req">* Required field</span>
@@ -14,8 +20,14 @@
       <input name="hike_time" type="time" value="{{hike.hike_time}}">
       <label for="estimated_time">Estimated hike time</label><span class="req">* Required field</span>
       <input name="estimated_time" type="text" value="{{hike.estimated_time}}">
-      <label for="diff_level">Difficulty level</label><span class="req">* Required field</span>
-      <input name="diff_level" type="text" value="{{hike.diff_level}}">
+      <select name="diff_level" class="select" value="{{hike.diff_level.value}}">
+        <option selected hidden>Difficulty level</option>
+        <option value="&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9734;&#9734;">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+      </select>
       <label for="elevation">Elevation</label><span class="req">* Required field</span>
       <input name="elevation" type="text" value="{{hike.elevation}}">
       <label for="slope">Average slope</label><span class="req">* Required field</span>

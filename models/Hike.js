@@ -7,6 +7,9 @@ const HikeSchema = mongoose.Schema({
   county:{
     type: String
   },
+  code:{
+    type: String
+  },
   meeting_point:{
     type: String
   }, 
@@ -37,10 +40,8 @@ const HikeSchema = mongoose.Schema({
   },
   user:{ 
     type: mongoose.Schema.Types.ObjectId,
-    ref:'users'
+    ref: 'users'
   }
 });
-
-
 
 mongoose.model('hikes', HikeSchema);

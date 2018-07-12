@@ -29,6 +29,9 @@ header, h1, h2, .button {
 .hidden {
 	display: none;
 }
+.capitalize{
+  text-transform: capitalize;
+}
 .clearfix {
   clear: both;
 }
@@ -135,7 +138,7 @@ fieldset {
 .input-field:first-child{
   float:left;
 }
-input, textarea {
+input, textarea, select {
   width: 100%;
   height: 30px;
   border: 1px solid #13911f;
@@ -145,13 +148,16 @@ input, textarea {
   margin-bottom: 25px;
   font-size: 14px;
 }
-input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:active {
-  font-family: 'PT Sans Caption', sans-serif;
-}
 .req {
   float: right;
   color: #13911f;
   margin-right: 50px;
+}
+.select{
+  padding: 5px;
+}
+input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:active {
+  font-family: 'PT Sans Caption', sans-serif;
 }
 
 

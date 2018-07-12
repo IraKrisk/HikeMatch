@@ -1,0 +1,26 @@
+<h2>Contact</h2>
+
+
+<p>{{user.email}}</p>
+
+<p>{{user}}</p>
+
+
+
+<div class="formContainer">
+  <form method="post" novalidate>
+    <fieldset>
+      <label for="name">Name</label>
+      <input name="name" type="text" value="{{user.name}}">
+      <label for="email">Email</label>
+      <input name="email" type="email" value="{{user.email}}">
+      <label for="pass">Pass</label>
+      <input name="pass" type="email" value="{{user.password}}">
+      <label for="subject">Subject</label>
+      <input name="subject" type="text" value="{{subject}}">
+      <label for="message">Message</label>
+      <input name="message" type="text" value="{{message}}">
+      <button type="submit" class="button">Send</button>
+    </fieldset>
+  </form>
+</div>
