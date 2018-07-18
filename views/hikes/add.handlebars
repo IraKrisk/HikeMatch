@@ -1,7 +1,7 @@
 <h2>Add Hike Suggestion</h2>
 {{>_errors}}
 <p>* All fields are required</p>
-<div class="formContainer add">
+<div class="formContainer addEdit">
   <form method="post">
     <fieldset>
       <label for="destination">Destination</label>
@@ -38,8 +38,6 @@
       <input name="slope" type="text" value="{{slope}}">
       <label for="description">Description</label>
       <textarea name="description">{{description}}</textarea>     
-
-
       <button type="submit" class="button">Add New Hike</button>
     </fieldset>
   </form>

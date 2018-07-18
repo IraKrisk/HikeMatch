@@ -1,44 +1,73 @@
 const mongoose = require('mongoose');
 
 const HikeSchema = mongoose.Schema({
-  destination:{
+  destination: {
     type: String
   },
-  county:{
+  county: {
     type: String
   },
-  code:{
+  code: {
     type: String
   },
-  meeting_point:{
+  meeting_point: {
     type: String
   }, 
-  hike_date:{
+  hike_date: {
     type: String
   }, 
-  hike_time:{
+  hike_time: {
     type: String
   }, 
-  estimated_time:{
+  estimated_time: {
     type: String
   }, 
-  diff_level:{
+  diff_level: {
     type: String
   }, 
-  elevation:{
+  elevation: {
     type: String
   }, 
-  slope:{
+  slope: {
     type: String
   }, 
-  description:{
+  description: {
     type: String
   },
-  date:{
+  date: {
     type: Date,
     default: Date.now
   },
-  user:{ 
+  interests: [{
+    interestName: {
+      type: String
+    },
+    interestDate: {
+      type: Date,
+      default: Date.now
+    },
+    interestUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users'
+    }
+  }],
+  comments: [{
+    commentTitle: {
+      type: String
+    },
+    commentContent: {
+      type: String
+    },
+    commentDate: {
+      type: Date,
+      default: Date.now
+    },
+    commentUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'users'
+    }
+  }],
+  user: { 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   }

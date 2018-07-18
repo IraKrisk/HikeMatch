@@ -2,62 +2,75 @@
   <img src="/images/gallery/mountain1.jpg"/>
 </div>
 <div id="home-buttons">
-  <ul id="county">
-    <li class="button dropdown"><a href="#">County &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub></a>
-      <ul class="dropdown-category button hidden">
-        <li><a href="/hikes/county/antrim">Antrim</a></li>
-        <li><a href="/hikes/county/armagh">Armagh</a></li>
-        <li><a href="/hikes/county/clare">clare</a></li>
+  <div>
+    <a href="/hikes/add" id="add" class="button right">Add Hike</a>
+    <p id="search" class="button">Search</p>
+  </div>
+
+  <div id="searchList">
+    <div class="searchButtons">
+      <ul id="county" class="dropdown">
+        <li class="button dropdown">County &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
+          <ul class="dropdown-menu hidden">
+            <li class="button"><a href="/hikes/county/antrim">Antrim</a></li>
+            <li class="button"><a href="/hikes/county/armagh">Armagh</a></li>
+            <li class="button"><a href="/hikes/county/clare">Clare</a></li>
+          </ul>
+        </li>
       </ul>
-    </li>
-  </ul>
+    </div>
 
-  <ul>
-      <ul class="dropdown-category button hidden">
-        {{#each hikes}}
-            <li><a href="/hikes/county/{{county}}">{{county}}</a></li>
-        {{else}}
-          <p class="message">Hikes not found</p>
-        {{/each}} 
+    <div class="searchButtons">
+      <ul id="diff_level" class="dropdown">
+        <li class="button dropdown">Difficulty level &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
+          <ul class="dropdown-menu">
+            <li class="button"><a href="/hikes/difficulty/&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</a></li>
+            <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</a></li>
+            <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9734;&#9734;">&#9733;&#9733;&#9733;&#9734;&#9734;</a></li>
+            <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</a></li>
+            <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</a></li>
+          </ul>
+        </li>
       </ul>
-    </li>
-  </ul>
+    </div>
 
-  <ul id="diff_level">
-    <li class="button dropdown" ><a href="#">Difficulty level &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub></a>
-      <ul class="dropdown-category button">
-        <li><a href="/hikes/difficulty/&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</a></li>
-        <li><a href="/hikes/difficulty/&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</a></li>
-        <li><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9734;&#9734;">&#9733;&#9733;&#9733;&#9734;&#9734;</a></li>
-        <li><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</a></li>
-        <li><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <p>
-    <form action="/" method="get" class="formContainer">
-      <input type="text" name="search">
-      <input type="submit" name="Search">
-    </form>
-  </p>
-
-
-  <a href="/hikes/add" id="add" class="button right">Add Hike</a>
+    <div class="searchButtons" id="textSearch">
+      <form action="/" method="get" class="formContainer">
+        <input type="text" name="search">
+        <span class="searchButton right"><input type="submit" name="Search" value="Search"></span>
+      </form>
+    </div>
+  </div>
+  <div class="clearfix"></div>
 </div>
 
     {{> _message}}
     
 <div>
   {{#each hikes}}
-    <div>
-      <h3>{{destination}}</h3>
-      <p class="capitalize">{{county}}</p>
-      <p>{{formatDate date 'DD MMMM YYYY'}}</p>
-      <p>by {{user.name}}</p>
-      <a href="/hikes/show/{{code}}" class="button">Details</a>
+    <div id="hikeList">
+      <h3>{{destination}}, <span class="county capitalize">{{county}}</span></h3>
+      <p class="italic">by {{user.name}}, {{formatDate date 'DD MMMM YYYY'}}</p>
+      <p>Difficulty level: {{diff_level}}</p>
+      <p>Estimated hike time: {{hike_time}}</p>
+      <p>Meeting point: {{meeting_point}}</p>
+      <p id="details"><a href="/hikes/show/{{code}}" class="button">Details</a></p>
     </div>
   {{else}}
     <p class="message">Hikes not found</p>
   {{/each}} 
 </div>
+
+
+    <div id="map"></div>
+    <script>
+      let map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 53.350140, lng: ‎-6.266155},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoV9Agg8DZIXnxonuzhpNLSuOw82agWCQ&callback=initMap"
+    async defer></script>

@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const bycript = require('bcryptjs');
 
 const UserSchema = mongoose.Schema({
-  name:{
+  name: {
     type: String
   },
-  email:{
+  email: {
     type: String
   },
-  phone:{
+  phone: {
     type: Number
   }, 
-  password:{
+  password: {
     type: String
   }, 
-  confirm_password:{
+  confirm_password: {
     type: String,
   },
   date: {

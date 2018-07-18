@@ -1,5 +1,5 @@
 <h2>Edit Hike</h2>
-<div class="formContainer edit">
+<div class="formContainer addEdit">
   <form method="post">
     <fieldset>
       <label for="destination">Destination</label><span class="req">* Required field</span>
@@ -12,6 +12,8 @@
         <option value="cavan">Cavan</option>
         <option value="clare">Clare</option>
       </select>
+      <label for="code">Hike code</label>
+      <input name="code" type="text" value="{{hike.code}}" class="hidden">
       <label for="meeting_point">Meeting point</label><span class="req">* Required field</span>
       <input name="meeting_point" type="text" value="{{hike.meeting_point}}">
       <label for="hike_date">Date</label><span class="req">* Required field</span>

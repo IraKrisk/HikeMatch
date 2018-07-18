@@ -3,13 +3,21 @@ html, body, header, section, article, div, footer, p, h1, ul, li {
 	padding: 0;
 }
 body {
+  max-width: 960px;
+  width: 100%;
+  font-family: 'PT Sans Caption', sans-serif;
+  margin: 0 auto;
   overflow: auto;
 }
-body, input, textarea, .button, .leftContainer, rightContainer {
+body, input, textarea, .button, .leftContainer, rightContainer, #dashboard, .searchButtons {
   box-sizing: border-box;
 }
 h2 {
   font-size: 18px;
+  margin-top: 20px;
+}
+h3 {
+  color: #13911f;
 }
 ul {
 	list-style: none;
@@ -20,7 +28,7 @@ a {
 img {
 	background-size: contain;
 }
-header, h1, h2, .button {
+header, h1, h2, .button, .interestComment h3, .interestComment h4 {
   font-family: 'Rock Salt', cursive;
 }
 .right {
@@ -29,18 +37,21 @@ header, h1, h2, .button {
 .hidden {
 	display: none;
 }
+.blue {
+  color: #1f497d;
+}
+.italic {
+  font-style: italic;
+  margin-bottom: 10px;
+}
 .capitalize{
   text-transform: capitalize;
 }
 .clearfix {
   clear: both;
 }
-body {
-  max-width: 960px;
-  width: 100%;
-  font-family: 'PT Sans Caption', sans-serif;
-  margin: 0 auto;
-}
+
+/* header */
 header {
   margin-top: 10px;
   min-height: 80px;
@@ -52,6 +63,7 @@ header a {
 #logo {
   float: left;
 }
+/* navigation */
 #navigation {
   margin: 35px auto;
   font-size: 14px;
@@ -64,18 +76,15 @@ header a {
 #navigation ul li:nth-child(2) {
   padding-right: 20px;
 }
-
 #navigation ul li {
   float: left;
   padding-left: 25px;
 }
-.blue {
-  color: #1f497d;
-}
+
 .button, .button a {
   color: #13911f;
   font-size: 14px;
-  background: #fff;
+  background-color: #fff;
   border-right: none;
   border-left: none;
 }
@@ -115,12 +124,107 @@ img {
   width: 100%;
   height: auto;
 }
-#add, #county {
+#add, #search {
   display: inline-block;
   margin-top: 20px;
 }
 #home-buttons {
-  margin: 0 15px;
+  margin: 20px 15px;
+}
+
+/* dropdown */
+.dropdown {
+  width: 100%;
+  position: relative;
+}
+.dropdown-menu {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 57px;
+  margin: 0 auto;
+}
+.dropdown-menu li {
+  text-align: center;
+  background-color: #13911f;
+  padding: 8px;
+}
+.dropdown-menu li:hover {
+  padding: 7px;
+}
+.dropdown-menu .button a {
+  color: #fff;
+  background-color: #13911f;
+}
+
+/* search */
+.searchButtons {
+  width: 23%;
+  display: inline-block;
+  margin-top: 30px;
+  margin-right: 5%;
+}
+.searchButtons:last-child {
+  width: 40%;
+  padding: 0;
+  margin: 0;
+}
+.searchButtons .formContainer {
+  width: 100%;
+  margin: 0;
+}
+.searchButtons input:first-child {
+  width: 70%;
+}
+.searchButtons input:last-child {
+  width: 100%;
+}
+#county .dropdown-menu, #diff_level .dropdown-menu {
+  margin-top: -17px;
+}
+#county .dropdown-menu:hover, #diff_level .dropdown-menu:hover {
+  margin-top: -17px;
+}
+#textSearch input {
+  display: inline-block;
+  margin-top: 30px;
+  line-height: 5px;
+}
+#textSearch input:last-child {
+  display: inline-block;
+  margin-top: 30px;
+  line-height: 5px;
+  color: #13911f;
+  background: #fff;
+  font-family: 'Rock Salt', cursive;
+}
+label {
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+#hikeList {
+  border-bottom: 1px solid #1f497d;
+  margin-top: 30px;
+  padding-bottom: 50px;
+}
+#hikeList p {
+  line-height: 25px;
+}
+#hikeList:last-child {
+  border: none;
+}
+.county {
+  color: #000;
+  font-size: 16px;
+}
+#details {
+  margin-top: 20px;
 }
 
 
@@ -148,6 +252,10 @@ input, textarea, select {
   margin-bottom: 25px;
   font-size: 14px;
 }
+textarea {
+  height: 70px;
+  padding-top: 8px;
+}
 .req {
   float: right;
   color: #13911f;
@@ -159,9 +267,12 @@ input, textarea, select {
 input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:active {
   font-family: 'PT Sans Caption', sans-serif;
 }
+.formContainer.addEdit {
+  margin-top: 50px;
+}
 
 
-/* Log in */
+/* log in */
 #logReg {
   margin: 30px 20px 90px;
 }
@@ -175,11 +286,14 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
 
 
 /* show page */
-.leftContainer{
+#show p {
+  line-height: 25px;
+}
+.leftContainer {
   width: 70%;
   display: inline-block;
 }
-.rightContainer{
+.rightContainer {
   width: 20%;
   display: block;
 }
@@ -187,8 +301,55 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
   margin-bottom: 25px;
   display: block;
 }
+.interestComment {
+  margin-top: 60px;
+  position: relative;
+}
+.interestComment h3 {
+  font-size: 16px;
+}
+.interestComment h4 {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+#addComment {
+  font-weight: normal;
+  display: block;
+  margin-top: -56px;
+}
+#commentList {
+  border-bottom: 1px solid #1f497d;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+#interestButton {
+  position: absolute;
+  top: 0;
+}
 
 
+/* dashboard */
+.dashboard p {
+  width: 20%;
+  border-bottom: 1px solid #1f497d;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.dashboard p:first-child {
+  width: 35%;
+  text-align: left;
+}
+#addHikeDash {
+  margin-top: -56px;
+}
+.dashboard p .button {
+  border: none;
+}
+#dashboardHeader {
+  margin-top: 50px;
+}
 
 
 /* footer */
@@ -202,4 +363,94 @@ footer {
   margin-top: 30px;
   padding-top: 10px;
   text-align: center;
+}
+
+
+/* media queries */
+@media screen and (max-width: 640px) {
+/* menu */
+
+  /* navigation */
+  #navigation {
+    display: none;
+  }
+  #mob-navigation {
+    width: 100%;
+    margin-top: -53px;
+    display: block;
+    z-index: 100;
+  }
+  .menuIcon {
+    position: relative; 
+    width: 30px;
+    height: 3px;
+    background-color: #13911f;
+    margin: 6px 0;
+  }
+  .dropdown {
+    width: 100%;
+    position: relative;
+  }
+  #dropdown-menu {
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 57px;
+    margin: 0 auto;
+  }
+  #dropdown-menu li {
+    text-align: center;
+    background-color: #13911f;
+    padding: 8px;
+  }
+  #dropdown-menu li:hover  {
+    padding: 7px;
+  }
+  #dropdown-menu .button a {
+    color: #fff;
+    background-color: #13911f;
+  }
+
+  /* search */
+  .searchButtons {
+    display: block;
+    margin: 40px auto;
+  }
+  .searchButtons {
+    width: 100%;
+  }
+  #textSearch {
+    margin-top: -20px;
+  }
+  #textSearch input {
+    display: inline-block;
+  }
+  .searchButtons:last-child {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+
+
+
+
+
+  /* show page */
+  .leftContainer {
+    width: 100%;
+  }
+  .rightContainer {
+    width: 100%;
+    margin: 50px auto;
+  }
+  .hikeDetails li:nth-child(odd) {
+    float: right;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  body {
+    width: 90%;
+  }
 }

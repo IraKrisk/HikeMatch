@@ -45,6 +45,8 @@ router.get('/register', function(req, res){
 router.post('/register', function(req, res){
   let errors = [];
 
+
+// register form validation
 /*   if(req.body.name.length > 25) {
     errors.push({text: 'Name can have maximum 25 characters'});
   }
@@ -75,7 +77,9 @@ router.post('/register', function(req, res){
       confirm_password: req.body.confirm_password
     });
   } else {
-    User.findOne({email: req.body.email})
+    User.findOne({
+      email: req.body.email
+    })
       .then(function(user){
         if(user){
           req.flash('error_msg', 'Email already registered');
@@ -109,7 +113,7 @@ router.get('/logout', function(req, res){
   res.redirect('login');
 })
 
-// get request for dashboard
+// dashboard get request
 router.get('/dashboard', ensureAuthenticated, function(req, res) {
   Hike.find({
     user: req.user.id

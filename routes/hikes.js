@@ -15,6 +15,8 @@ router.get('/show/:code', function(req, res){
     code: req.params.code
   })
   .populate('user')
+  .populate('interests.interestUser')
+  .populate('comments.commentUser')
   .then(function(hike){
     res.render('hikes/show', {
       hike: hike
@@ -23,57 +25,48 @@ router.get('/show/:code', function(req, res){
   console.log(req.params.code);
 });
 
-//  add get request 
+// add get request 
 router.get('/add', ensureAuthenticated, function(req, res){
   res.render('hikes/add');  
 });
 
 // add post request
-router.post('/add',  ensureAuthenticated, function(req, res){
-
-  // add hike form validation
+router.post('/add',  ensureAuthenticated, function(req, res){ 
   let errors = [];  
+
+  // add and edit hike form validation
   let inputDate = req.body.hike_date;
 
- 
-/*   if(!req.body.destination || !req.body.county || || !req.body.cod || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description) {
+/*   if(!req.body.destination || !req.body.county || !req.body.cod || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description) {
     errors.push({text:'Please fill in all the fields'});
-  } 
-
+  }
   if((req.body.county === 'County') || (req.body.diff_level === 'Difficulty level')){
     errors.push({text:'Please fill in all the fields'});
   } 
-
   if(new Date(inputDate).getTime() < new Date().getTime()){
     errors.push({text:'Please enter future date'});
   } 
-
   if((/^[a-zA-Z0-9]+$/).test(req.body.code) === false) {
     errors.push({text: 'Code has to consist of letters or numbers without spaces'});
   } 
   if(req.body.code.length > 8){
     errors.push({text: 'Code can have maximum 8 characters'});
   }
-
   if(req.body.meeting_point.length > 30){
     errors.push({text: 'Code can have maximum 30 characters'});
   }
-  if(req.body.estimated_time.length > 25){
-    errors.push({text: 'Estimated hike time can have maximum 25 characters'});
+  if(req.body.estimated_time.length > 12){
+    errors.push({text: 'Estimated hike time can have maximum 12 characters'});
   }
-  if(req.body.elevation.length > 10){
-    errors.push({text: 'Elevation can have maximum 10 characters'});
+  if(req.body.elevation.length > 12){
+    errors.push({text: 'Elevation can have maximum 12 characters'});
   }
-  if(req.body.slope.length > 10){
-    errors.push({text: 'Estimated hike length can have maximum 10 characters'});
+  if(req.body.slope.length > 12){
+    errors.push({text: 'Estimated hike length can have maximum 12 characters'});
   }
   if(req.body.description.length > 2000){
     errors.push({text: 'Description can have maximum 2000 characters'});
-  }
-
-
-*/ 
-
+  } */
 
 
     if(errors.length > 0){
@@ -143,9 +136,9 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res){
     code: req.params.code
   })
   .then(function(hike){
-    res.render('hikes/edit', {
-      hike: hike
-    });
+      res.render('hikes/edit', {
+        hike: hike
+      });
   })
   console.log(req.params.destination);
 }); 
@@ -201,19 +194,58 @@ router.get('/delete/:code', ensureAuthenticated, function(req, res){
   // console.log(req.params.id);
 });
 
-// user's hikes
-router.get('/user/:id', function(req, res){
+// author's hikes
+router.get('/user/:name', function(req, res){
   Hike.find({
-    user: req.params.id
+   user: req.params.id
   })
   .populate('user')
   .sort({date:'desc'})
   .then(function(hikes){
-    res.render('index/', {
+    res.render('index', {
       hikes: hikes
     });
   });
-  console.log(req.params.id);
+  console.log(req.params.name);
+});
+
+
+// interested in hike
+router.post('/interest/:code', ensureAuthenticated, function(req, res){
+  Hike.findOne({
+    code: req.params.code
+  })
+  .populate('user')
+  .then(function(hike){
+    const newInterest = {
+      interestUser: req.user.id
+    }
+    hike.interests.unshift(newInterest);  // adds new interest
+    hike.save()
+    .then(function(hike){
+      res.redirect('/hikes/show/' + hike.code);
+    });
+  });
+});
+
+// comments
+router.post('/comment/:code', ensureAuthenticated, function(req, res){
+  Hike.findOne({
+    code: req.params.code
+  })
+  .populate('user')
+  .then(function(hike){
+    const newComment = {
+      commentTitle: req.body.commentTitle,
+      commentContent: req.body.commentContent,
+      commentUser: req.user.id
+    }
+    hike.comments.unshift(newComment);  // adds new comment
+    hike.save()
+    .then(function(hike){
+      res.redirect('/hikes/show/' + hike.code);
+    });
+  });
 });
 
 
@@ -222,14 +254,12 @@ router.get('/county/:county', function(req, res){
   Hike.find({
     county: req.params.county
   })
-  .populate('user')
   .sort({date: 'desc'})
   .then(function(hikes){
     res.render('index/', {
       hikes: hikes
     });
   });
-  console.log('req.params.county ' + req.params.county);
 });
 
 // search difficulty level
@@ -237,15 +267,12 @@ router.get('/difficulty/:diff_level', function(req, res){
   Hike.find({
     diff_level: req.params.diff_level
   })
-  .populate('user')
-
   .sort({date: 'desc'})
   .then(function(hikes){
     res.render('index/', {
       hikes: hikes
     });
   });
-  console.log('req.params.diff_level '  + req.params.county);
 });
 
 module.exports = router;
