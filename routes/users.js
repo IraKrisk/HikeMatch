@@ -5,11 +5,11 @@ const passport = require('passport');
 const router = express.Router();
 
 // user model
-const usersModel = require('../models/User');
+ const usersModel = require('../models/User');
 const User = mongoose.model('users');
 
 // hike model
-const hikesModel = require('../models/Hike');
+ const hikesModel = require('../models/Hike');
 const Hike = mongoose.model('hikes');
 
 // helpers

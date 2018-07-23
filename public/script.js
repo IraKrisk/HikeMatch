@@ -64,9 +64,8 @@ $(document).ready(function(){
   })
 });
 
-
 function initMap(){
-  const lat = 45.3271;
+  const lat = document.getElementById('coo').value;
   const lng = 14.4422;
   var location = new google.maps.LatLng(lat, lng);
   // let location = {lat, lng};
@@ -80,5 +79,5 @@ function initMap(){
     icon:'../../images/map-icon.png'
   });
   marker.setMap(map);
-}
-
+  console.log(lat);
+} 

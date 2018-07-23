@@ -2,16 +2,17 @@ const express = require('express');  // require the express package
 const mongoose = require('mongoose');  // require mongoose
 const router = express.Router();
 
-
 // helpers
 const {ensureAuthenticated} = require('../helpers/authentication');
 
 // hike model
-const hikes = require('../models/Hike');
+// const hikes = require('../models/Hike');
 const Hike = mongoose.model('hikes');
 
 // show get request 
 router.get('/show/:code', function(req, res){
+
+latitudex = 15.32;
 
   Hike.findOne({
     code: req.params.code
@@ -22,8 +23,7 @@ router.get('/show/:code', function(req, res){
   .then(function(hike){
 
     function initMap(){
-      const lat = 45.3271;
-      const lng = 14.4422;
+
       // let location = new google.maps.LatLng(lat, lng);
       let location = {lat, lng};
       map = new google.maps.Map(document.getElementById('map'), {
@@ -44,6 +44,7 @@ router.get('/show/:code', function(req, res){
 
 
   });
+  
 });
 
 // add get request 
@@ -151,7 +152,6 @@ router.post('/add',  ensureAuthenticated, function(req, res){
           }          
        })
     }
-   // console.log(req.body);
 });
 
 // edit get request
@@ -165,7 +165,6 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res){
         hike: hike
       });
   })
-  console.log(req.params.destination);
 }); 
 
 // edit post request
@@ -204,7 +203,6 @@ router.get('/delete/:code', ensureAuthenticated, function(req, res){
     req.flash('success_msg', 'Hike deleted');
     res.redirect('/users/dashboard');
   });
-  // console.log(req.params.id);
 });
 
 // author's hikes
@@ -219,7 +217,6 @@ router.get('/user/:email', function(req, res){
       hikes: hikes
     });
   });
-  console.log(req.params.name);
 });
 
 // interested in hike

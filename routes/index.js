@@ -59,7 +59,6 @@ router.get('/contact/:email', ensureAuthenticated, function(req, res){
   
 });
 
-
 // contact post request
 router.post('/contact/:email', function(req, res) {
 
@@ -75,7 +74,7 @@ router.post('/contact/:email', function(req, res) {
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false, 
     auth:{
       user: 'irakriskovic@gmail.com',
       pass: 'sparugajuha'
