@@ -21,20 +21,13 @@ router.get('/login', function(req, res, next){
 });
 
 // login post request
-
-/* router.post('/login', function(req, res){
-  res.render('users/login');
-}); */
-
 router.post('/login', function(req, res, next){
   passport.authenticate('local', {
     successRedirect:'/users/dashboard',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
-  req.flash('success_msg', 'You have successfully logged in');
 });
-
 
 // register get request 
 router.get('/register', function(req, res){
@@ -45,24 +38,19 @@ router.get('/register', function(req, res){
 router.post('/register', function(req, res){
   let errors = [];
 
-
 // register form validation
 /*   if(req.body.name.length > 25) {
     errors.push({text: 'Name can have maximum 25 characters'});
   }
-
   if((/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/).test(req.body.email) === false) {
     errors.push({text: 'Invalid email format'});
   }
-
   if((/^[0-9-]*$/).test(req.body.phone) === false) {
     errors.push({text: 'Phone has to consist of numbers and - without spaces'});
   }
-
-  if(req.body.password.length < 2) {
+  if(req.body.password.length < 8) {
     errors.push({text: 'Password must have at least 8 characters'});
   }
-
   if(req.body.password != req.body.confirm_password){
     errors.push({text: 'Passwords must match'});
   } */

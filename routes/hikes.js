@@ -2,6 +2,7 @@ const express = require('express');  // require the express package
 const mongoose = require('mongoose');  // require mongoose
 const router = express.Router();
 
+
 // helpers
 const {ensureAuthenticated} = require('../helpers/authentication');
 
@@ -11,6 +12,7 @@ const Hike = mongoose.model('hikes');
 
 // show get request 
 router.get('/show/:code', function(req, res){
+
   Hike.findOne({
     code: req.params.code
   })
@@ -18,11 +20,30 @@ router.get('/show/:code', function(req, res){
   .populate('interests.interestUser')
   .populate('comments.commentUser')
   .then(function(hike){
+
+    function initMap(){
+      const lat = 45.3271;
+      const lng = 14.4422;
+      // let location = new google.maps.LatLng(lat, lng);
+      let location = {lat, lng};
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: location,
+        zoom: 10
+      });
+      let marker = new google.maps.Marker({
+        position: location, 
+        map: map,
+        icon:'../../images/map-icon.png'
+      });
+      marker.setMap(map);
+    }
+
     res.render('hikes/show', {
       hike: hike
     });
+
+
   });
-  console.log(req.params.code);
 });
 
 // add get request 
@@ -34,10 +55,10 @@ router.get('/add', ensureAuthenticated, function(req, res){
 router.post('/add',  ensureAuthenticated, function(req, res){ 
   let errors = [];  
 
-  // add and edit hike form validation
+  // form validation
   let inputDate = req.body.hike_date;
 
-/*   if(!req.body.destination || !req.body.county || !req.body.cod || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description) {
+/*   if(!req.body.destination || !req.body.county || !req.body.code || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description) {
     errors.push({text:'Please fill in all the fields'});
   }
   if((req.body.county === 'County') || (req.body.diff_level === 'Difficulty level')){
@@ -67,13 +88,17 @@ router.post('/add',  ensureAuthenticated, function(req, res){
   if(req.body.description.length > 2000){
     errors.push({text: 'Description can have maximum 2000 characters'});
   } */
-
+  
 
     if(errors.length > 0){
       res.render('hikes/add', {
         errors: errors,
         destination: req.body.destination,
         county: req.body.county,
+
+        lat: req.body.lat,
+        lng: req.body.lng,
+
         code: req.body.code,
         meeting_point: req.body.meeting_point,
         hike_date: req.body.hike_date,
@@ -84,7 +109,7 @@ router.post('/add',  ensureAuthenticated, function(req, res){
         slope: req.body.slope,
         description: req.body.description,
         user: req.user.id
-        // email: req.params.email
+
       });
 
     // if no error create hike
@@ -95,11 +120,16 @@ router.post('/add',  ensureAuthenticated, function(req, res){
         .then(function(hike){
           if(hike){
             req.flash('error_msg', 'Code already exists');
-            res.redirect('/users/dashboard');
+            res.redirect('/hikes/add');
           } else {
+
             const newHike = {
               destination: req.body.destination,
               county: req.body.county,
+
+              lat: req.body.lat,
+              lng: req.body.lng,
+
               code: req.body.code,
               meeting_point: req.body.meeting_point,
               hike_date: req.body.hike_date,
@@ -110,10 +140,6 @@ router.post('/add',  ensureAuthenticated, function(req, res){
               slope: req.body.slope,
               description: req.body.description,
               user: req.user.id
-              // email: req.params.email
-              // name: req.user.name
-              
-              // id: newId
             }
 
             new Hike(newHike)
@@ -125,9 +151,8 @@ router.post('/add',  ensureAuthenticated, function(req, res){
           }          
        })
     }
-   console.log(req.body);
+   // console.log(req.body);
 });
-
 
 // edit get request
 router.get('/edit/:code', ensureAuthenticated, function(req, res){  
@@ -142,17 +167,6 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res){
   })
   console.log(req.params.destination);
 }); 
-
-
-/* router.get('/edit/:id', function(req, res){  
-  Hike.findById(req.params.id, function(hike){
-    res.render('hikes/edit', {
-      hike:hike
-    });
-  });
-  console.log(req.params.id);
-}); */
-
 
 // edit post request
 router.post('/edit/:code', function(req, res){
@@ -176,11 +190,10 @@ router.post('/edit/:code', function(req, res){
     hike.save()
       .then(function(hike){
         req.flash('success_msg', 'Hike edited');
-        res.redirect('/');
+        res.redirect('/users/dashboard');
       });
   });
 });
-
 
 // delete get request
 router.get('/delete/:code', ensureAuthenticated, function(req, res){
@@ -189,15 +202,15 @@ router.get('/delete/:code', ensureAuthenticated, function(req, res){
   })
   .then(function(){
     req.flash('success_msg', 'Hike deleted');
-    res.redirect('/');
+    res.redirect('/users/dashboard');
   });
   // console.log(req.params.id);
 });
 
 // author's hikes
-router.get('/user/:name', function(req, res){
+router.get('/user/:email', function(req, res){
   Hike.find({
-   user: req.params.id
+   user: req.params.email
   })
   .populate('user')
   .sort({date:'desc'})
@@ -208,7 +221,6 @@ router.get('/user/:name', function(req, res){
   });
   console.log(req.params.name);
 });
-
 
 // interested in hike
 router.post('/interest/:code', ensureAuthenticated, function(req, res){
@@ -235,19 +247,25 @@ router.post('/comment/:code', ensureAuthenticated, function(req, res){
   })
   .populate('user')
   .then(function(hike){
-    const newComment = {
-      commentTitle: req.body.commentTitle,
-      commentContent: req.body.commentContent,
-      commentUser: req.user.id
-    }
-    hike.comments.unshift(newComment);  // adds new comment
-    hike.save()
-    .then(function(hike){
+
+    if(!req.body.commentTitle || !req.body.commentContent){
+      req.flash('error_msg', 'Please fill in all the fields');
       res.redirect('/hikes/show/' + hike.code);
-    });
+    } else {
+
+      const newComment = {
+        commentTitle: req.body.commentTitle,
+        commentContent: req.body.commentContent,
+        commentUser: req.user.id
+      }
+      hike.comments.unshift(newComment);  // adds new comment
+      hike.save()
+      .then(function(hike){
+        res.redirect('/hikes/show/' + hike.code);
+      });
+    }
   });
 });
-
 
 // search county 
 router.get('/county/:county', function(req, res){

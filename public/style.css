@@ -18,6 +18,11 @@ h2 {
 }
 h3 {
   color: #13911f;
+  font-size: 16px;
+}
+h4 {
+  color: #13911f;
+  font-size: 14px;
 }
 ul {
 	list-style: none;
@@ -28,7 +33,7 @@ a {
 img {
 	background-size: contain;
 }
-header, h1, h2, .button, .interestComment h3, .interestComment h4 {
+header, h1, h2, .button, h3, h4 {
   font-family: 'Rock Salt', cursive;
 }
 .right {
@@ -43,6 +48,9 @@ header, h1, h2, .button, .interestComment h3, .interestComment h4 {
 .italic {
   font-style: italic;
   margin-bottom: 10px;
+}
+.pointer {
+  cursor: pointer;
 }
 .capitalize{
   text-transform: capitalize;
@@ -80,7 +88,6 @@ header a {
   float: left;
   padding-left: 25px;
 }
-
 .button, .button a {
   color: #13911f;
   font-size: 14px;
@@ -119,11 +126,46 @@ header a {
 }
 
 /* index page */
+/* gallery */
+#galleryContainer {
+  width: 100%;
+  overflow: auto;
+  position:relative;
+}
+#slider {
+	overflow:hidden;
+	float:left;
+	padding:3px;
+}
 img {
   background-size: contain;
   width: 100%;
   height: auto;
 }
+#slider img {
+  display: none;
+}
+#slider img.active {
+	display:inline-block;
+}
+#prev, #next {
+  position: absolute;
+  width: 5%;
+  top: 43%;
+  z-index: 1;
+  margin: 3px;
+}
+#prev {
+  right: 0;
+}
+#next {
+  left: 0;
+}
+
+
+
+
+
 #add, #search {
   display: inline-block;
   margin-top: 20px;
@@ -158,13 +200,16 @@ img {
 }
 
 /* search */
+#search {
+  margin-bottom: 25px;
+}
 .searchButtons {
   width: 23%;
   display: inline-block;
   margin-top: 30px;
   margin-right: 5%;
 }
-.searchButtons:last-child {
+.searchButtons:first-child {
   width: 40%;
   padding: 0;
   margin: 0;
@@ -173,11 +218,16 @@ img {
   width: 100%;
   margin: 0;
 }
-.searchButtons input:first-child {
+.searchButtons input:last-child {
   width: 70%;
 }
 .searchButtons input:last-child {
   width: 100%;
+}
+#county {
+  margin-left: 20px;
+}
+#diff_level {
 }
 #county .dropdown-menu, #diff_level .dropdown-menu {
   margin-top: -17px;
@@ -186,11 +236,13 @@ img {
   margin-top: -17px;
 }
 #textSearch input {
+  width: 70%;
   display: inline-block;
   margin-top: 30px;
   line-height: 5px;
 }
 #textSearch input:last-child {
+  width: 100%;
   display: inline-block;
   margin-top: 30px;
   line-height: 5px;
@@ -198,6 +250,10 @@ img {
   background: #fff;
   font-family: 'Rock Salt', cursive;
 }
+#textSearch input:last-child:hover {
+  font-weight: bold;
+}
+
 label {
   float: left;
   text-align: right;
@@ -219,10 +275,7 @@ label {
 #hikeList:last-child {
   border: none;
 }
-.county {
-  color: #000;
-  font-size: 16px;
-}
+
 #details {
   margin-top: 20px;
 }
@@ -301,32 +354,53 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
   margin-bottom: 25px;
   display: block;
 }
+#hikeListDetails {
+  border-bottom: 2px solid #13911f;
+  padding-bottom: 60px;
+}
+#hidePhone {
+  width: 50px;
+}
+#showPhone {
+  margin-top: -41px;
+  margin-left: 60px;
+}
 .interestComment {
   margin-top: 60px;
   position: relative;
 }
-.interestComment h3 {
-  font-size: 16px;
-}
 .interestComment h4 {
-  font-size: 14px;
   margin-bottom: 0;
+}
+#interest {
+  position: absolute;
+  top: -130px;
+  right: 7px;
+}
+#hideInterest {
+  margin-top: -55px;
+}
+#hideComment {
+  margin-top: 25px;
+}
+#interestButton {
+  display: block;
+  margin-top: 50px;
 }
 #addComment {
   font-weight: normal;
   display: block;
   margin-top: -56px;
 }
-#commentList {
+#commentList, #interestList {
   border-bottom: 1px solid #1f497d;
   padding-top: 10px;
   padding-bottom: 15px;
 }
-#interestButton {
-  position: absolute;
-  top: 0;
+#map {
+  width: 100%;
+  height: 300px;
 }
-
 
 /* dashboard */
 .dashboard p {
@@ -378,7 +452,6 @@ footer {
     width: 100%;
     margin-top: -53px;
     display: block;
-    z-index: 100;
   }
   .menuIcon {
     position: relative; 
@@ -410,7 +483,14 @@ footer {
     color: #fff;
     background-color: #13911f;
   }
-
+  .logMenu {
+    font-size: 9px;
+    margin-top: 0; 
+  }
+  /* gallery */
+  #galleryContainer {
+    display: none;
+  }
   /* search */
   .searchButtons {
     display: block;
@@ -425,14 +505,11 @@ footer {
   #textSearch input {
     display: inline-block;
   }
-  .searchButtons:last-child {
+  .searchButtons:first-child {
     width: 100%;
     padding: 0;
     margin: 0;
   }
-
-
-
 
 
 
@@ -444,10 +521,45 @@ footer {
     width: 100%;
     margin: 50px auto;
   }
-  .hikeDetails li:nth-child(odd) {
+  .hikeDetails {
+    margin-top: 50px;
+  }
+  .hikeDetails li:nth-child(even) {
     float: right;
+    margin-top: -60px;
   }
 }
+
+@media screen and (max-width: 850px) {
+  .formContainer {
+    width: 100%;
+  }
+  .searchButtons {
+    width: 40%;
+    display: inline-block;
+    margin-top: 30px;
+    margin-right: 5%;
+  }
+  #textSearch input {
+    width: 72%;
+  }
+  .searchButtons:first-child {
+    width: 40%;
+    display: block;
+  }
+  .searchButtons:first-child {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 985px) {
+  #textSearch input:last-child {
+    padding: 18px 5px;
+  }
+}
+
 
 @media screen and (max-width: 1050px) {
   body {

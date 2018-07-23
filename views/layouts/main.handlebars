@@ -5,11 +5,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Hike Match</title>
+    <meta name="description" content="website for hikers who want to post their hike suggestions with their chosen destinations and dates or join to already posted hike trip">
+    <meta name="keywords" content="hiking, mountains, outdoor, recreation, nature, hobby, walking, trekking, health, activity, trip, journey, woods, landscape">
     <meta name="author" content="Ira Kriskovic">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption|Rock+Salt" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="script.js"></script>
+    <script src="../../script.js"></script>
   </head>
   <body>
 
@@ -32,18 +35,26 @@
       </nav>
 
       <nav id="mob-navigation" class="right hidden">
-        <ul class="dropdown">
+        <ul id="hideMobMenu" class="dropdown pointer">
           <li class="dropdownIcon">
             <div class="right">
               <div class="menuIcon"></div>
               <div class="menuIcon"></div>
               <div class="menuIcon"></div>
             </div>
-          <ul class="dropdown-menu">
-            <li class="button"><a href="/">Hikes</a></li>
-            <li class="button"><a href="/info">Info</a></li>
-            <li class="button"><a href="/login">Log in</a></li>
-            <li class="button"><a href="/register">Register</a></li>
+          <ul id="showMobMenu" class="dropdown-menu hidden">
+            {{#if user}}
+              <li class="button"><a href="/">Hikes</a></li>
+              <li class="button"><a href="/info">Info</a></li>
+              <li class="logMenu button"><a href="/users/dashboard">Dashboard</a></li>
+              <li class="logMenu button"><a href="/users/logout">Log out</a></li>
+            {{else}}
+              <li class="button"><a href="/">Hikes</a></li>
+              <li class="button"><a href="/info">Info</a></li>
+              <li class="button"><a href="/users/login">Log in</a></li>
+              <li class="button"><a href="/users/register">Register</a></li>
+            {{/if}}
+
           </ul>
         </ul>
       </nav>      
@@ -60,5 +71,10 @@
       <p>HDip in Science in Web Technologies</p>
       <p>Project 2018</p>
     </footer>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdTkiBPybPKCjoCZa9P8vwzxQH5FPOjUI&callback=initMap"
+      async defer>
+    </script>
   </body>
 </html>

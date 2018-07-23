@@ -69,6 +69,6 @@ app.use('/hikes', hikes);
 app.use('/users', users);
 
 // server
-app.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
+app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log('server started');
 });

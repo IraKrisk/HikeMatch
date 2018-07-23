@@ -1,29 +1,78 @@
-<div id="gallery">  
-  <img src="/images/gallery/mountain1.jpg"/>
+<div id="galleryContainer">
+  <div id="gallery">
+    <img src="/images/gallery/next.jpg" id="prev" alt="Prev"/>
+    <div id="slider">
+      <img src="/images/gallery/mountain.jpg" class="active" id="firstImg" alt="Mountain"/>
+      <img src="/images/gallery/climbing.jpg" alt="Climbing"/>
+      <img src="/images/gallery/mountain-hut.jpg" alt="Mountain hut"/>
+      <img src="/images/gallery/nature.jpg" alt="Nature"/>
+      <img src="/images/gallery/woods.jpg" alt="Woods"/>
+      <img src="/images/gallery/hiking.jpg" id="lastImg" alt="Hiking"/>
+    </div>
+  </div>
+  <img src="/images/gallery/prev.jpg" id="next" alt="Next"/>
 </div>
 <div id="home-buttons">
   <div>
     <a href="/hikes/add" id="add" class="button right">Add Hike</a>
-    <p id="search" class="button">Search</p>
+    <p id="search" class="button pointer">Search</p>
   </div>
 
   <div id="searchList">
+
+    <div class="searchButtons" id="textSearch">
+      <form action="/" method="get" class="formContainer">
+        <input type="text" name="search">
+        <span class="searchButton right"><input type="submit" name="Search" value="Search"></span>
+      </form>
+    </div>
+
+
     <div class="searchButtons">
-      <ul id="county" class="dropdown">
-        <li class="button dropdown">County &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
-          <ul class="dropdown-menu hidden">
+      <ul id="county" class="dropdown pointer">
+        <li class="button">County &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
+          <ul id="county-dropdown" class="dropdown-menu hidden">
             <li class="button"><a href="/hikes/county/antrim">Antrim</a></li>
             <li class="button"><a href="/hikes/county/armagh">Armagh</a></li>
+            <li class="button"><a href="/hikes/county/carlow">Carlow</a></li>
+            <li class="button"><a href="/hikes/county/Ccavan">Cavan</a></li>
             <li class="button"><a href="/hikes/county/clare">Clare</a></li>
+            <li class="button"><a href="/hikes/county/cork">Cork</a></li>
+            <li class="button"><a href="/hikes/county/derry">Derry</a></li>
+            <li class="button"><a href="/hikes/county/donegal">Donegal</a></li>
+            <li class="button"><a href="/hikes/county/down">Down</a></li>
+            <li class="button"><a href="/hikes/county/dublin">Dublin</a></li>
+            <li class="button"><a href="/hikes/county/fermanagh">Fermanagh</a></li>
+            <li class="button"><a href="/hikes/county/galway">Galway</a></li>
+            <li class="button"><a href="/hikes/county/kerry">Kerry</a></li>
+            <li class="button"><a href="/hikes/county/kildare">Kildare</a></li>
+            <li class="button"><a href="/hikes/county/kilkenny">Kilkenny</a></li>
+            <li class="button"><a href="/hikes/county/laois">Laois</a></li>
+            <li class="button"><a href="/hikes/county/leitrim">Leitrim</a></li>
+            <li class="button"><a href="/hikes/county/limerick">Limerick</a></li>
+            <li class="button"><a href="/hikes/county/longford">Longford</a></li>
+            <li class="button"><a href="/hikes/county/louth">Louth</a></li>
+            <li class="button"><a href="/hikes/county/mayo">Mayo</a></li>
+            <li class="button"><a href="/hikes/county/meath">Meath</a></li>
+            <li class="button"><a href="/hikes/county/monaghan">Monaghan</a></li>
+            <li class="button"><a href="/hikes/county/offaly">Offaly</a></li>
+            <li class="button"><a href="/hikes/county/roscommon">Roscommon</a></li>
+            <li class="button"><a href="/hikes/county/sligo">Sligo</a></li>
+            <li class="button"><a href="/hikes/county/tipperary">Tipperary</a></li>
+            <li class="button"><a href="/hikes/county/tyrone">Tyrone</a></li>
+            <li class="button"><a href="/hikes/county/waterford">Waterford</a></li>
+            <li class="button"><a href="/hikes/county/westmeath">Westmeath</a></li>
+            <li class="button"><a href="/hikes/county/wexford">Wexford</a></li>
+            <li class="button"><a href="/hikes/county/wicklow">Wicklow</a></li>
           </ul>
         </li>
       </ul>
     </div>
 
     <div class="searchButtons">
-      <ul id="diff_level" class="dropdown">
-        <li class="button dropdown">Difficulty level &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
-          <ul class="dropdown-menu">
+      <ul id="diff_level" class="dropdown pointer">
+        <li class="button">Level &nbsp;&nbsp;<sub>\</sub>|<sub>/</sub>
+          <ul id="level-dropdown" class="dropdown-menu hidden">
             <li class="button"><a href="/hikes/difficulty/&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</a></li>
             <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</a></li>
             <li class="button"><a href="/hikes/difficulty/&#9733;&#9733;&#9733;&#9734;&#9734;">&#9733;&#9733;&#9733;&#9734;&#9734;</a></li>
@@ -32,13 +81,6 @@
           </ul>
         </li>
       </ul>
-    </div>
-
-    <div class="searchButtons" id="textSearch">
-      <form action="/" method="get" class="formContainer">
-        <input type="text" name="search">
-        <span class="searchButton right"><input type="submit" name="Search" value="Search"></span>
-      </form>
     </div>
   </div>
   <div class="clearfix"></div>
@@ -61,16 +103,5 @@
   {{/each}} 
 </div>
 
-
-    <div id="map"></div>
-    <script>
-      let map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 53.350140, lng: ‎-6.266155},
-          zoom: 8
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoV9Agg8DZIXnxonuzhpNLSuOw82agWCQ&callback=initMap"
-    async defer></script>
+{{!-- <div id="map">
+</div> --}}

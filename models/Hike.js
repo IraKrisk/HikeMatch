@@ -1,12 +1,32 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const HikeSchema = mongoose.Schema({
+// hike Schema
+const HikeSchema = new Schema({
   destination: {
     type: String
   },
   county: {
     type: String
   },
+  lat: {
+    type: String
+  },
+  lng: {
+    type: String
+  },
+  location: [{
+    type: {
+      type: String,
+      default: 'Point'
+  },
+    coordinates: {
+      type: [Number]
+    }
+  }],
+
+
+
   code: {
     type: String
   },

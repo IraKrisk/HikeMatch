@@ -1,48 +1,69 @@
 <h2>Hike Details</h2>
-<div class="leftContainer left">
-	<div id="show">
-    <h3>{{hike.destination}}, <span class="county capitalize">{{hike.county}}</span></h3>
-    <p class="italic">by {{hike.user.name}}, {{formatDate hike.date 'DD MMMM YYYY'}}</p>
-		<p>Meeting point: {{hike.meeting_point}}</p>
-		<p>Date: {{formatDate hike.hike_date 'DD MMMM YYYY'}}</p>
-		<p>Time: {{hike.hike_time}}</p>
-		<p>Estimated hike time: {{hike.estimated_time}}</p>
-		<p>Difficulty level: {{hike.diff_level}}</p>
-		<p>Elevation: {{hike.elevation}}</p>
-		<p>Average slope: {{hike.slope}}</p>
-		<p>Description: {{hike.description}}</p>  
+{{>_errors}}
+{{>_message}}
+<div id="hikeListDetails">
+	<div class="leftContainer left">
+		<div id="show">
+			<h3>{{hike.destination}}, <span class="county capitalize">{{hike.county}}</span></h3>
+
+			<p>Latitude: {{hike.lat}}</p>
+			<p>Longitude: {{hike.lng}}</p>
+
+			<p class="italic">by {{hike.user.name}}, {{formatDate hike.date 'DD MMMM YYYY'}}</p>
+			<p>Meeting point: {{hike.meeting_point}}</p>
+			<p>Date: {{formatDate hike.hike_date 'DD MMMM YYYY'}}</p>
+			<p>Time: {{hike.hike_time}}</p>
+			<p>Estimated hike time: {{hike.estimated_time}}</p>
+			<p>Difficulty level: {{hike.diff_level}}</p>
+			<p>Elevation: {{hike.elevation}}</p>
+			<p>Average slope: {{hike.slope}}</p>
+			<p>Description: {{hike.description}}</p>  
+		</div>
 	</div>
-</div>
 
-
-<div class="rightContainer right">
-	<ul class="hikeDetails">
-		<li><a href=# class="button">Phone</a></li>
-		<li><a href="/contact/{{hike.user.email}}" class="button">email</a></li>
-		<li><a href="/hikes/user/{{hike.user.id}}" class="button">{{hike.user.name}}'s hikes</a></li>
-		<li><a href="/" class="button">Hike list</a></li>
-	</ul>
+	<div class="rightContainer right">
+		<ul class="hikeDetails">
+			<li>
+				<p id="hidePhone" class="button pointer">Phone</p>
+				<div id="showPhone" class="hidden">
+					{{#if hike.user.phone}}
+					<p class="button">{{hike.user.phone}}</p>
+					{{else}}
+					<p class="button">Not provided</p>
+					{{/if}}
+				</div>
+			</li>
+			<li><a href="/contact/{{hike.user.email}}" class="button">email</a></li>
+			<li><a href="/hikes/user/{{hike.user.id}}" class="button">{{hike.user.name}}'s hikes</a></li>
+			<li><a href="/" class="button">Hike list</a></li>
+		</ul>
+	</div>
 </div>
 
 <div class="interestComment">
 	<div class="formContainer log">
 		<form action="/hikes/interest/{{hike.code}}" method="post">
-			<button id="interest" type="submit" class="button right">I'm interested</button>
+			<button id="interest" type="submit" class="button right pointer">I'm interested</button>
 		</form>
 	</div>
-	<h3 id="interestButton right">Interested hikers</h3>
-	{{#each hike.interests}}
-	<div id="commentList">
-		<h4>{{interestUser.name}}</h4>
-		<p class="italic">{{formatDate interestDate 'DD MMMM YYYY'}}</p>
+	{{#if hike.interests}}
+	<h3 id="interestButton">Interested hikers</h3>
+	<span id="hideInterest" class="button right pointer">Show or hide interest</span>
+	<div id="showInterest">
+		{{#each hike.interests}}
+		<div id="interestList">
+			<h4>{{interestUser.name}}</h4>
+			<p class="italic">{{formatDate interestDate 'DD MMMM YYYY'}}</p>
+		</div>
+		{{/each}}
 	</div>
-	{{/each}}
+	{{/if}}
 </div>
 
 <div class="interestComment">
 	<h3>Comments</h3>
-	<button id="addComment" class="button right">Add Comment</button>
-		<div class="formContainer log">
+	<button id="addComment" class="button right pointer">Add Comment</button>
+		<div id="commentForm" class="formContainer log hidden">
 			<form action="/hikes/comment/{{hike.code}}" method="post">
 				<label for="commentTitle">Title</label>
 				<input name="commentTitle" type="text" value="{{commentTitle}}">
@@ -51,13 +72,21 @@
 				<button type="submit" class="button">Submit</button>
 			</form>
 		</div>
-	{{#each hike.comments}}
-		<div id="commentList">
-			<h4>{{commentTitle}}</h4>
-			<p class="italic">by {{commentUser.name}}, {{formatDate commentDate 'DD MMMM YYYY'}}</p>
-			<p>{{commentContent}}</p>
+		{{#if hike.comments}}
+		<span id="hideComment" class="button right pointer">Show or hide comments</span>
+		{{/if}}
+		<div id="showComment">
+			{{#each hike.comments}}
+				<div id="commentList">
+					<h4>{{commentTitle}}</h4>
+					<p class="italic">by {{commentUser.name}}, {{formatDate commentDate 'DD MMMM YYYY'}}</p>
+					<p>{{commentContent}}</p>
+				</div>
+			{{/each}}
 		</div>
-	{{/each}}
 </div>
+
+<div id="map"></div>
+
 
       
