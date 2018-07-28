@@ -9,25 +9,13 @@ const HikeSchema = new Schema({
   county: {
     type: String
   },
+  code: {
+    type: String
+  },
   lat: {
     type: String
   },
   lng: {
-    type: String
-  },
-  location: [{
-    type: {
-      type: String,
-      default: 'Point'
-  },
-    coordinates: {
-      type: [Number]
-    }
-  }],
-
-
-
-  code: {
     type: String
   },
   meeting_point: {
@@ -39,6 +27,9 @@ const HikeSchema = new Schema({
   hike_time: {
     type: String
   }, 
+  hike_length: {
+    type: String
+  },
   estimated_time: {
     type: String
   }, 

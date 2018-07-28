@@ -13,7 +13,6 @@ const {ensureAuthenticated} = require('../helpers/authentication');
 
 // home page get request
 router.get('/', function(req, res){
-
   // text search
   if(req.query.search){
     const search = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -76,8 +75,8 @@ router.post('/contact/:email', function(req, res) {
     port: 587,
     secure: false, 
     auth:{
-      user: 'irakriskovic@gmail.com',
-      pass: 'sparugajuha'
+      user: 'hike.match.project@gmail.com',
+      pass: 'hIkeM@tch'
     },
     tls:{
       rejectUnauthorized: false
@@ -85,7 +84,7 @@ router.post('/contact/:email', function(req, res) {
   });
 
   let mailOptions = {
-    from: 'irakriskovic@gmail.com',
+    from: 'hike.match.project@gmail.com',
     to: req.params.email,
     html: output 
   }
@@ -99,9 +98,9 @@ router.post('/contact/:email', function(req, res) {
     } else {
       console.log(info);
     }
-    req.flash('success_msg', 'You have successfully logged out');
-     res.render('index/contact', {message:'Email has been sent'});
+    res.render('index/contact', {message: 'Email has been sent'});
   });
+  console.log(req.body);
 });
 
 // search regEx

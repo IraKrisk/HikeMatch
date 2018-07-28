@@ -13,7 +13,7 @@
       <p><a href="/hikes/show/{{code}}" class="button">{{destination}}</a></p>
       <p><span class="button">{{code}}</span></p>
       <p><a href="/hikes/edit/{{code}}" class="button">Edit</a></p>
-      <p><a href="/hikes/delete/{{code}}" class="button">Delete</a></p>
+      <p><a href="/hikes/delete/{{code}}" class="button" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a></p>
     </div>
   {{/each}}
 {{else}}

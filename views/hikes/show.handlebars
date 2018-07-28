@@ -5,14 +5,11 @@
 	<div class="leftContainer left">
 		<div id="show">
 			<h3>{{hike.destination}}, <span class="county capitalize">{{hike.county}}</span></h3>
-
-			<p>Latitude: {{hike.lat}}</p>
-			<p>Longitude: {{hike.lng}}</p>
-
 			<p class="italic">by {{hike.user.name}}, {{formatDate hike.date 'DD MMMM YYYY'}}</p>
 			<p>Meeting point: {{hike.meeting_point}}</p>
 			<p>Date: {{formatDate hike.hike_date 'DD MMMM YYYY'}}</p>
 			<p>Time: {{hike.hike_time}}</p>
+			<p>Length: {{hike.hike_length}}</p>
 			<p>Estimated hike time: {{hike.estimated_time}}</p>
 			<p>Difficulty level: {{hike.diff_level}}</p>
 			<p>Elevation: {{hike.elevation}}</p>
@@ -40,6 +37,10 @@
 	</div>
 </div>
 
+<input id="latitude" name="latitude" type="text" value="{{hike.lat}}" class="hidden">
+<input id="longitude" name="longitude" type="text" value="{{hike.lng}}" class="hidden">
+<div id="map"></div>
+
 <div class="interestComment">
 	<div class="formContainer log">
 		<form action="/hikes/interest/{{hike.code}}" method="post">
@@ -61,7 +62,7 @@
 </div>
 
 <div class="interestComment">
-	<h3>Comments </h3>
+	<h3>Comments</h3>
 	<button id="addComment" class="button right pointer">Add Comment</button>
 		<div id="commentForm" class="formContainer log hidden">
 			<form action="/hikes/comment/{{hike.code}}" method="post">
@@ -85,10 +86,6 @@
 			{{/each}}
 		</div>
 </div>
-
-<label id="coo"  value="25.236">Coordinates</label>
-
-<div id="map"></div>
-
+<div class="clearfix"></div>
 
       

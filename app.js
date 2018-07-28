@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');  
 const session = require('express-session');  
 const passport = require('passport'); 
-// const nodemailer = require('nodemailer'); 
-// const moment = require('moment');
+const nodemailer = require('nodemailer'); 
+const moment = require('moment');
 const app = express();   // create the express application
 
 app.use(express.static('public')); // access to the public folder

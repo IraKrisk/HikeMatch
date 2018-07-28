@@ -2,7 +2,7 @@
 <div class="formContainer addEdit">
   <form method="post">
     <fieldset>
-      <label for="destination">Destination</label><span class="req">* Required field</span>
+      <label for="destination">Destination</label><span class="req"></span>
       <input name="destination" type="text" value="{{hike.destination}}">
       <select name="county" class="select" value="{{hike.county}}">
         <option selected hidden>County</option>
@@ -41,13 +41,19 @@
       </select>
       <label for="code" class="hidden">Hike code</label>
       <input name="code" type="text" value="{{hike.code}}" class="hidden">
-      <label for="meeting_point">Meeting point</label><span class="req">* Required field</span>
+      <label for="lat">Latitude</label>
+      <input name="lat" type="text" value="{{hike.lat}}">
+      <label for="lng">Longitude</label>
+      <input name="lng" type="text" value="{{hike.lng}}">
+      <label for="meeting_point">Meeting point</label><span class="req"></span>
       <input name="meeting_point" type="text" value="{{hike.meeting_point}}">
-      <label for="hike_date">Date</label><span class="req">* Required field</span>
+      <label for="hike_date">Date</label><span class="req"></span>
       <input name="hike_date" type="date" value="{{hike.hike_date}}">
-      <label for="hike_time">Time</label><span class="req">* Required field</span>
+      <label for="hike_time">Time</label><span class="req"></span>
       <input name="hike_time" type="time" value="{{hike.hike_time}}">
-      <label for="estimated_time">Estimated hike time</label><span class="req">* Required field</span>
+      <label for="hike_length">Length</label>
+      <input name="hike_length" type="text" value="{{hike.hike_length}}">
+      <label for="estimated_time">Estimated hike time</label><span class="req"></span>
       <input name="estimated_time" type="text" value="{{hike.estimated_time}}">
       <select name="diff_level" class="select" value="{{hike.diff_level}}">
         <option selected hidden>Difficulty level</option>
@@ -57,9 +63,9 @@
         <option value="&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
         <option value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
       </select>
-      <label for="elevation">Elevation</label><span class="req">* Required field</span>
+      <label for="elevation">Elevation</label><span class="req"></span>
       <input name="elevation" type="text" value="{{hike.elevation}}">
-      <label for="slope">Average slope</label><span class="req">* Required field</span>
+      <label for="slope">Average slope</label><span class="req"></span>
       <input name="slope" type="text" value="{{hike.slope}}">
       <label for="description">Description</label>
       <textarea name="description">{{hike.description}}</textarea>     

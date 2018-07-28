@@ -65,10 +65,10 @@ $(document).ready(function(){
 });
 
 function initMap(){
-  const lat = document.getElementById('coo').value;
-  const lng = 14.4422;
-  var location = new google.maps.LatLng(lat, lng);
-  // let location = {lat, lng};
+  const lat = document.getElementById('latitude').value;
+  const lng = document.getElementById('longitude').value;
+
+  const location = new google.maps.LatLng(lat, lng);
   map = new google.maps.Map(document.getElementById('map'), {
     center: location,
     zoom: 10
@@ -79,5 +79,4 @@ function initMap(){
     icon:'../../images/map-icon.png'
   });
   marker.setMap(map);
-  console.log(lat);
 } 

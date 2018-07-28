@@ -6,13 +6,11 @@ const router = express.Router();
 const {ensureAuthenticated} = require('../helpers/authentication');
 
 // hike model
-// const hikes = require('../models/Hike');
+const hikes = require('../models/Hike');
 const Hike = mongoose.model('hikes');
 
 // show get request 
 router.get('/show/:code', function(req, res){
-
-latitudex = 15.32;
 
   Hike.findOne({
     code: req.params.code
@@ -21,28 +19,9 @@ latitudex = 15.32;
   .populate('interests.interestUser')
   .populate('comments.commentUser')
   .then(function(hike){
-
-    function initMap(){
-
-      // let location = new google.maps.LatLng(lat, lng);
-      let location = {lat, lng};
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: location,
-        zoom: 10
-      });
-      let marker = new google.maps.Marker({
-        position: location, 
-        map: map,
-        icon:'../../images/map-icon.png'
-      });
-      marker.setMap(map);
-    }
-
     res.render('hikes/show', {
       hike: hike
     });
-
-
   });
   
 });
@@ -54,31 +33,34 @@ router.get('/add', ensureAuthenticated, function(req, res){
 
 // add post request
 router.post('/add',  ensureAuthenticated, function(req, res){ 
-  let errors = [];  
 
-  // form validation
+  // add form validation
+  let errors = [];  
   let inputDate = req.body.hike_date;
 
-/*   if(!req.body.destination || !req.body.county || !req.body.code || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description) {
+  if(!req.body.destination || !req.body.county || !req.body.code || !req.body.lat || !req.body.lng || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.hike_length || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description || req.body.county === 'County' || req.body.diff_level === 'Difficulty level') {
     errors.push({text:'Please fill in all the fields'});
   }
-  if((req.body.county === 'County') || (req.body.diff_level === 'Difficulty level')){
-    errors.push({text:'Please fill in all the fields'});
-  } 
+  if(req.body.destination.length > 25){
+    errors.push({text: 'Code can have maximum 25 characters'});
+  }
   if(new Date(inputDate).getTime() < new Date().getTime()){
     errors.push({text:'Please enter future date'});
   } 
   if((/^[a-zA-Z0-9]+$/).test(req.body.code) === false) {
     errors.push({text: 'Code has to consist of letters or numbers without spaces'});
   } 
-  if(req.body.code.length > 8){
-    errors.push({text: 'Code can have maximum 8 characters'});
+  if(req.body.code.length > 6){
+    errors.push({text: 'Code can have maximum 6 characters'});
   }
-  if(req.body.meeting_point.length > 30){
-    errors.push({text: 'Code can have maximum 30 characters'});
+  if((/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/).test(req.body.lat) === false || (/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/).test(req.body.lng) === false) {
+    errors.push({text: 'Wrong coordinate format'});
+  } 
+  if(req.body.meeting_point.length > 20){
+    errors.push({text: 'Meeting point can have maximum 20 characters'});
   }
-  if(req.body.estimated_time.length > 12){
-    errors.push({text: 'Estimated hike time can have maximum 12 characters'});
+  if(req.body.estimated_time.length > 20){
+    errors.push({text: 'Estimated hike time can have maximum 20 characters'});
   }
   if(req.body.elevation.length > 12){
     errors.push({text: 'Elevation can have maximum 12 characters'});
@@ -88,29 +70,26 @@ router.post('/add',  ensureAuthenticated, function(req, res){
   }
   if(req.body.description.length > 2000){
     errors.push({text: 'Description can have maximum 2000 characters'});
-  } */
+  }
   
-
     if(errors.length > 0){
       res.render('hikes/add', {
         errors: errors,
         destination: req.body.destination,
         county: req.body.county,
-
+        code: req.body.code,
         lat: req.body.lat,
         lng: req.body.lng,
-
-        code: req.body.code,
         meeting_point: req.body.meeting_point,
         hike_date: req.body.hike_date,
         hike_time: req.body.hike_time,
+        hike_length: req.body.hike_length,
         estimated_time: req.body.estimated_time,
         diff_level: req.body.diff_level,
         elevation: req.body.elevation,
         slope: req.body.slope,
         description: req.body.description,
         user: req.user.id
-
       });
 
     // if no error create hike
@@ -127,14 +106,13 @@ router.post('/add',  ensureAuthenticated, function(req, res){
             const newHike = {
               destination: req.body.destination,
               county: req.body.county,
-
+              code: req.body.code,
               lat: req.body.lat,
               lng: req.body.lng,
-
-              code: req.body.code,
               meeting_point: req.body.meeting_point,
               hike_date: req.body.hike_date,
               hike_time: req.body.hike_time,
+              hike_length: req.body.hike_length,
               estimated_time: req.body.estimated_time,
               diff_level: req.body.diff_level,
               elevation: req.body.elevation,
@@ -165,6 +143,7 @@ router.get('/edit/:code', ensureAuthenticated, function(req, res){
         hike: hike
       });
   })
+  console.log(req.params.destination);
 }); 
 
 // edit post request
@@ -180,6 +159,7 @@ router.post('/edit/:code', function(req, res){
     hike.meeting_point = req.body.meeting_point;
     hike.hike_date = req.body.hike_date;
     hike.hike_time = req.body.hike_time;
+    hike.hike_length = req.body.hike_length;
     hike.estimated_time = req.body.estimated_time;
     hike.diff_level = req.body.diff_level;
     hike.elevation = req.body.elevation;

@@ -42,27 +42,27 @@
         <option value="wexford">Wexford</option>
         <option value="wicklow">Wicklow</option>
       </select>
+      <label for="code">Hike code</label><span class="req">Max 5 characters, letters and numbers, no spaces</span>
+      <input name="code" type="text" value="{{code}}">
       <label for="lat">Latitude</label>
       <input name="lat" type="text" value="{{lat}}">
       <label for="lng">Longitude</label>
       <input name="lng" type="text" value="{{lng}}">
-
-
-      <label for="code">Hike code</label><span class="req">Max 5 characters, letters and numbers, no spaces</span>
-      <input name="code" type="text" value="{{code}}">
       <label for="meeting_point">Meeting point</label>
       <input name="meeting_point" type="text" value="{{meeting_point}}">
       <label for="hike_date">Date</label>
       <input name="hike_date" type="date" value="{{hike_date}}">
       <label for="hike_time">Time</label>
       <input name="hike_time" type="time" value="{{hike_time}}">
-      <label for="estimated_time">Estimated hike time (in hours)</label>
+      <label for="hike_length">Length</label>
+      <input name="hike_length" type="text" value="{{hike_length}}">
+      <label for="estimated_time">Estimated hike time</label>
       <input name="estimated_time" type="text" value="{{estimated_time}}">
       <select name="diff_level" class="select" value="{{diff_level}}">
         <option selected hidden>Difficulty level</option>
         <option value="&#9733;&#9734;&#9734;&#9734;&#9734;">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
         <option value="&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
-        <option value="&#9733;&#9733;&#9734;&#9734;&#9734;">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+        <option value="&#9733;&#9733;&#9733;&#9734;&#9734;">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
         <option value="&#9733;&#9733;&#9733;&#9733;&#9734;">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
         <option value="&#9733;&#9733;&#9733;&#9733;&#9733;">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
       </select>
