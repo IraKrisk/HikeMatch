@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   // search options
-  $('#search').click(function(){
+  $('#searchTopButton').click(function(){
     $('#searchList').slideToggle(1000);
   });
   // county options

@@ -164,7 +164,7 @@ img {
   left: 0;
 }
 
-#add, #search {
+#add, #searchTopButton {
   display: inline-block;
   margin-top: 20px;
 }
@@ -198,7 +198,7 @@ img {
 }
 
 /* search */
-#search {
+#searchTopButton {
   margin-bottom: 25px;
 }
 .searchButtons {
