@@ -7,16 +7,16 @@
   <form method="post" novalidate>
     <fieldset>
       <label for="name">Name</label><span class="req">* Required field</span>
-      <input name="name" type="text" value="{{name}}">
+      <input name="name" type="text"  id="name" value="{{name}}">
       <label for="email">Email</label><span class="req">* Required field</span>
       <input name="email" type="email" id="email" value="{{email}}">
       <label for="phone">Phone</label>
-      <input name="phone" type="tel" value="{{phone}}"> 
+      <input name="phone" type="tel"  id="phone" value="{{phone}}"> 
       <label for="password">Password</label><span class="req">* Required field</span>
       <input name="password" type="password" id="password" value="{{password}}">    
       <label for="confirm_password">Confirm password</label><span class="req">* Required field</span>
       <input name="confirm_password" type="password" value="{{confirm_password}}">   
-      <button type="submit" class="button">Register</button>
+      <button type="submit" class="button" id="confirm_password">Register</button>
     </fieldset>
   </form>
   <div id="logReg">
