@@ -19,10 +19,12 @@ h2 {
 h3 {
   color: #13911f;
   font-size: 16px;
+  font-family: 'Rock Salt', cursive;
 }
 h4 {
   color: #13911f;
   font-size: 14px;
+  font-family: 'Rock Salt', cursive;
 }
 ul {
 	list-style: none;
@@ -33,7 +35,7 @@ a {
 img {
 	background-size: contain;
 }
-header, h1, h2, .button, h3, h4 {
+header, h1, h2, .button {
   font-family: 'Rock Salt', cursive;
 }
 .right {
@@ -162,10 +164,6 @@ img {
   left: 0;
 }
 
-
-
-
-
 #add, #search {
   display: inline-block;
   margin-top: 20px;
@@ -258,35 +256,20 @@ label {
   white-space: nowrap;
   overflow: hidden;
 }
-
-
-
-#hikeList {
+.hikeList {
   border-bottom: 1px solid #1f497d;
   margin-top: 30px;
   padding-bottom: 50px;
 }
-#hikeList p {
+.hikeList p {
   line-height: 25px;
 }
-#hikeList:last-child {
+.hikeList:last-child {
   border: none;
 }
-
-#details {
+.details {
   margin-top: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* form */
 .formContainer {
@@ -304,7 +287,6 @@ input, textarea, select {
   height: 40px;
   border: 1px solid #13911f;
   border-radius: 3px;
-  padding: 10px;
   margin-top: 5px;
   margin-bottom: 25px;
   font-size: 14px;
@@ -327,7 +309,6 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
 .formContainer.addEdit {
   margin-top: 50px;
 }
-
 
 /* log in */
 #logReg {
@@ -395,7 +376,7 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
   display: block;
   margin-top: -56px;
 }
-#commentList, #interestList {
+#commentList, .interestList {
   border-bottom: 1px solid #1f497d;
   padding-top: 10px;
   padding-bottom: 15px;
@@ -427,7 +408,6 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
 #dashboardHeader {
   margin-top: 50px;
 }
-
 
 /* footer */
 footer {

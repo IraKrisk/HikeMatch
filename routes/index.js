@@ -76,7 +76,7 @@ router.post('/contact/:email', function(req, res) {
     secure: false, 
     auth:{
       user: 'hike.match.project@gmail.com',
-      pass: 'hIkeM@tch'
+      pass: 'nC!pR0ject'
     },
     tls:{
       rejectUnauthorized: false
@@ -85,6 +85,7 @@ router.post('/contact/:email', function(req, res) {
 
   let mailOptions = {
     from: 'hike.match.project@gmail.com',
+    subject: 'Hike Match',
     to: req.params.email,
     html: output 
   }

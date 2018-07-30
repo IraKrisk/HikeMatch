@@ -4,13 +4,13 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');  
 const flash = require('connect-flash');  
 const session = require('express-session');  
-const passport = require('passport'); 
+const passport = require('passport');
 const nodemailer = require('nodemailer'); 
 const moment = require('moment');
 const app = express();   // create the express application
 
 app.use(express.static('public')); // access to the public folder
-const keys = require('./config/keys');  // access to keys.js
+const keys = require('./config/database');  // access to keys.js
 const pass = require('./config/passport')(passport)  // passport.js
 
 // helpers

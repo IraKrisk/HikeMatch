@@ -37,7 +37,9 @@
 	</div>
 </div>
 
+<label for="latitude"></label>
 <input id="latitude" name="latitude" type="text" value="{{hike.lat}}" class="hidden">
+<label for="longitude"></label>
 <input id="longitude" name="longitude" type="text" value="{{hike.lng}}" class="hidden">
 <div id="map"></div>
 
@@ -52,7 +54,7 @@
 	<span id="hideInterest" class="button right pointer">Show or hide interest</span>
 	<div id="showInterest">
 		{{#each hike.interests}}
-		<div id="interestList">
+		<div class="interestList">
 			<h4>{{interestUser.name}}</h4>
 			<p class="italic">{{formatDate interestDate 'DD MMMM YYYY'}}</p>
 		</div>
@@ -67,9 +69,9 @@
 		<div id="commentForm" class="formContainer log hidden">
 			<form action="/hikes/comment/{{hike.code}}" method="post">
 				<label for="commentTitle">Title</label>
-				<input name="commentTitle" type="text" value="{{commentTitle}}">
+				<input name="commentTitle" type="text" id="commentTitle" value="{{commentTitle}}">
 				<label for="commentContent">Content</label>
-				<textarea name="commentContent"></textarea>
+				<textarea name="commentContent" id="commentContent"></textarea>
 				<button type="submit" class="button">Submit</button>
 			</form>
 		</div>
@@ -87,5 +89,3 @@
 		</div>
 </div>
 <div class="clearfix"></div>
-
-      

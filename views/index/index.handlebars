@@ -22,11 +22,11 @@
 
     <div class="searchButtons" id="textSearch">
       <form action="/" method="get" class="formContainer">
+        <label for="search"></label>
         <input type="text" name="search">
         <span class="searchButton right"><input type="submit" name="Search" value="Search"></span>
       </form>
     </div>
-
 
     <div class="searchButtons">
       <ul id="county" class="dropdown pointer">
@@ -90,18 +90,15 @@
     
 <div>
   {{#each hikes}}
-    <div id="hikeList">
+    <div class="hikeList">
       <h3>{{destination}}, <span class="county capitalize">{{county}}</span></h3>
       <p class="italic">by {{user.name}}, {{formatDate date 'DD MMMM YYYY'}}</p>
       <p>Difficulty level: {{diff_level}}</p>
       <p>Estimated hike time: {{hike_time}}</p>
       <p>Meeting point: {{meeting_point}}</p>
-      <p id="details"><a href="/hikes/show/{{code}}" class="button">Details</a></p>
+      <p class="details"><a href="/hikes/show/{{code}}" class="button">Hike Details</a></p>
     </div>
   {{else}}
     <p class="message">Hikes not found</p>
   {{/each}} 
 </div>
-
-{{!-- <div id="map">
-</div> --}}

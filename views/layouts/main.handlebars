@@ -11,17 +11,16 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption%7CRock+Salt" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../../script.js"></script>
   </head>
-  <body>
 
+  <body>
     <header>
       <h1 id="logo"><a href="/"><span class="blue">H</span>ike<span class="blue"> M</span>atch</a></h1>
       <nav id="navigation" class="right">
         <ul>
           {{#if user}}
-            <li><a href="/">Hikes</a></li>
+            <li><a href="/index">Hikes</a></li>
             <li><a href="/info">Info</a></li>
             <li class="logMenu"><a href="/users/dashboard">Dashboard</a></li>
             <li class="logMenu"><a href="/users/logout">Log out</a></li>
@@ -57,9 +56,7 @@
           </ul>
         </ul>
       </nav>      
-
     </header>
-    </div>
 
     <main>
       {{{body}}}
@@ -72,8 +69,7 @@
     </footer>
 
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdTkiBPybPKCjoCZa9P8vwzxQH5FPOjUI&callback=initMap"
-      async defer>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdTkiBPybPKCjoCZa9P8vwzxQH5FPOjUI&callback=initMap">
     </script>
   </body>
 </html>
