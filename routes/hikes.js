@@ -22,8 +22,7 @@ router.get('/show/:code', function(req, res){
     res.render('hikes/show', {
       hike: hike
     });
-  });
-  
+  });  
 });
 
 // add get request 
@@ -273,6 +272,3 @@ router.get('/difficulty/:diff_level', function(req, res){
 });
 
 module.exports = router;
-
-
-

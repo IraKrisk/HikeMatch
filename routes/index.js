@@ -55,7 +55,6 @@ router.get('/contact/:email', ensureAuthenticated, function(req, res){
     });
     console.log(req.params.email);
   });
-  
 });
 
 // contact post request

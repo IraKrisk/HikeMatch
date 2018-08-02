@@ -39,7 +39,7 @@ router.post('/register', function(req, res){
   let errors = [];
 
 // register form validation
-/*   if(req.body.name.length > 25) {
+  if(req.body.name.length > 25) {
     errors.push({text: 'Name can have maximum 25 characters'});
   }
   if((/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/).test(req.body.email) === false) {
@@ -53,7 +53,7 @@ router.post('/register', function(req, res){
   }
   if(req.body.password != req.body.confirm_password){
     errors.push({text: 'Passwords must match'});
-  } */
+  }
 
   if(errors.length > 0){
     res.render('users/register', {
@@ -68,29 +68,29 @@ router.post('/register', function(req, res){
     User.findOne({
       email: req.body.email
     })
-      .then(function(user){
-        if(user){
-          req.flash('error_msg', 'Email already registered');
-          res.redirect('register');
-        } else {
-          const newUser = new User({
-            name: req.body.name,
-            email: req.body.email,
-            phone: req.body.phone,
-            password: req.body.password
-          })
-          bcrypt.genSalt(10, function(err, salt) {
-              bcrypt.hash(newUser.password, salt, function(err, hash) {
-                newUser.password = hash;
-                newUser.save()
-                  .then(function(user){
-                    req.flash('success_msg', 'You have successfully registered, please log in');
-                    res.redirect('login');
-                  })
-              });
-          });
-        }
-      });
+    .then(function(user){
+      if(user){
+        req.flash('error_msg', 'Email already registered');
+        res.redirect('register');
+      } else {
+        const newUser = new User({
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          password: req.body.password
+        })
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(newUser.password, salt, function(err, hash) {
+              newUser.password = hash;
+              newUser.save()
+                .then(function(user){
+                  req.flash('success_msg', 'You have successfully registered, please log in');
+                  res.redirect('login');
+                })
+            });
+        });
+      }
+    });
   }
 });
 
