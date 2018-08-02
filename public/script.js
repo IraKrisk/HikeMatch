@@ -12,6 +12,12 @@ $(document).ready(function(){
   $('#diff_level').click(function(){
     $('#level-dropdown').slideToggle(1000);
   });
+  // hike list box
+  $('.hikeList').hover(function(){
+    $(this).css('box-shadow', '1px 1px 15px #1f497d');
+  }, function(){
+    $(this).css('box-shadow', '1px 1px 5px #1f497d');
+  });
   // show phone number
   $('#hidePhone').hover(function(){
     $('#showPhone').fadeToggle(1000);

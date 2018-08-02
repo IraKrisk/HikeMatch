@@ -231,6 +231,9 @@ img {
 #county .dropdown-menu:hover, #diff_level .dropdown-menu:hover {
   margin-top: -17px;
 }
+.countyName {
+  display: block;
+}
 #textSearch input {
   width: 70%;
   display: inline-block;
@@ -251,15 +254,25 @@ img {
 }
 label {
   float: left;
-  text-align: right;
   margin-right: 0.5em;
   white-space: nowrap;
   overflow: hidden;
 }
 .hikeList {
-  border-bottom: 1px solid #1f497d;
+  width: 45%;
+  float: left;
   margin-top: 30px;
   padding-bottom: 50px;
+  box-shadow: 1px 1px 5px #1f497d;
+}
+.hikeList:nth-child(odd) {
+  text-align: left;
+  margin-right: 4%;
+  padding-left: 3%;
+}
+.hikeList:nth-child(even) {
+  text-align: right;
+  padding-right: 3%;
 }
 .hikeList p {
   line-height: 25px;
@@ -411,6 +424,7 @@ input:focus, textarea:focus, input:valid, textarea:valid, input:invalid, input:a
 
 /* footer */
 footer {
+  position: relative;
   height: 70px;
   font-family: 'Rock Salt', cursive;
   background: #13911f;
@@ -420,6 +434,11 @@ footer {
   margin-top: 30px;
   padding-top: 10px;
   text-align: center;
+}
+#css-validation-icon {
+  position: absolute;
+  right: 30px;
+  top: 27px;
 }
 
 
@@ -493,8 +512,23 @@ footer {
     padding: 0;
     margin: 0;
   }
+  #css-validation-icon {
+    display: none;
+  }
+  /* hike list */
+  .hikeList {
+    width: 100%;
+  }
+  .hikeList h3, .hikeList p{
+    text-align: center;
+  }
 
 
+  .hikeList:nth-child(even) {
+    text-align: left;
+    padding-left: 3%;
+    padding-right: 0;
+  }
 
   /* show page */
   .leftContainer {
@@ -522,6 +556,7 @@ footer {
 }
 
 @media screen and (max-width: 850px) {
+  /* form */
   .formContainer {
     width: 100%;
   }

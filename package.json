@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Ira",
+  "author": "Ira Kriskovic",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

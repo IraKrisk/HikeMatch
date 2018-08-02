@@ -24,7 +24,7 @@
       <form action="/" method="get" class="formContainer">
         <label for="search"></label>
         <input type="text" name="search" id="search">
-        <span class="searchButton right"><input type="submit" name="Search" value="Search"></span>
+        <span class="searchButton right"><input type="submit" name="Search" class="pointer" value="Search"></span>
       </form>
     </div>
 
@@ -91,12 +91,12 @@
 <div>
   {{#each hikes}}
     <div class="hikeList">
-      <h3>{{destination}}, <span class="county capitalize">{{county}}</span></h3>
+      <h3>{{destination}}, <span class="countyName capitalize">{{county}}</span></h3>
       <p class="italic">by {{user.name}}, {{formatDate date 'DD MMMM YYYY'}}</p>
       <p>Difficulty level: {{diff_level}}</p>
       <p>Estimated hike time: {{hike_time}}</p>
       <p>Meeting point: {{meeting_point}}</p>
-      <p class="details"><a href="/hikes/show/{{code}}" class="button">Hike Details</a></p>
+      <p class="details"><a href="/hikes/show/{{code}}" class="button">hike details</a></p>
     </div>
   {{else}}
     <p class="message">Hikes not found</p>

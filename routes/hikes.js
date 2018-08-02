@@ -156,6 +156,8 @@ router.post('/edit/:code', function(req, res){
     hike.destination = req.body.destination;
     hike.county = req.body.county;
     hike.code = req.body.code;
+    hike.lat = req.body.lat,
+    hike.lng = req.body.lng,
     hike.meeting_point = req.body.meeting_point;
     hike.hike_date = req.body.hike_date;
     hike.hike_time = req.body.hike_time;
