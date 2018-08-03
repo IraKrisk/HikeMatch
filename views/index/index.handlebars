@@ -85,16 +85,14 @@
   </div>
   <div class="clearfix"></div>
 </div>
-
-    {{> _message}}
-    
+    {{> _message}}   
 <div>
   {{#each hikes}}
     <div class="hikeList">
       <h3>{{destination}}, <span class="countyName capitalize">{{county}}</span></h3>
       <p class="italic">by {{user.name}}, {{formatDate date 'DD MMMM YYYY'}}</p>
       <p>Difficulty level: {{diff_level}}</p>
-      <p>Estimated hike time: {{hike_time}}</p>
+      <p>Estimated hike time: {{estimated_time}}</p>
       <p>Meeting point: {{meeting_point}}</p>
       <p class="details"><a href="/hikes/show/{{code}}" class="button">hike details</a></p>
     </div>

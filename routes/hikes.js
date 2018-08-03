@@ -250,6 +250,7 @@ router.get('/county/:county', function(req, res){
   Hike.find({
     county: req.params.county
   })
+  .populate('user')
   .sort({date: 'desc'})
   .then(function(hikes){
     res.render('index/', {
@@ -263,6 +264,7 @@ router.get('/difficulty/:diff_level', function(req, res){
   Hike.find({
     diff_level: req.params.diff_level
   })
+  .populate('user')
   .sort({date: 'desc'})
   .then(function(hikes){
     res.render('index/', {

@@ -432,6 +432,7 @@ footer {
   margin-top: 30px;
   padding-top: 10px;
   text-align: center;
+  z-index: -10;
 }
 #css-validation-icon {
   position: absolute;
@@ -495,6 +496,7 @@ footer {
   .searchButtons {
     display: block;
     margin: 40px auto;
+    z-index: 10;
   }
   .searchButtons {
     width: 100%;
