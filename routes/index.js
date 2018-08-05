@@ -31,7 +31,7 @@ router.get('/', function(req, res){
     .populate('user')
     .sort({date: 'desc'})
     .then(function(hikes){
-      res.render('index', {
+      res.render('index/', {
         hikes: hikes
       });
     });

@@ -40,8 +40,8 @@ router.post('/add',  ensureAuthenticated, function(req, res){
   if(!req.body.destination || !req.body.county || !req.body.code || !req.body.lat || !req.body.lng || !req.body.meeting_point || !req.body.hike_date || !req.body.hike_time || !req.body.hike_length || !req.body.estimated_time || !req.body.diff_level || !req.body.elevation || !req.body.slope || !req.body.description || req.body.county === 'County' || req.body.diff_level === 'Difficulty level') {
     errors.push({text:'Please fill in all the fields'});
   }
-  if(req.body.destination.length > 25){
-    errors.push({text: 'Code can have maximum 25 characters'});
+  if(req.body.destination.length > 35){
+    errors.push({text: 'Destination can have maximum 35 characters'});
   }
   if(new Date(inputDate).getTime() < new Date().getTime()){
     errors.push({text:'Please enter future date'});
